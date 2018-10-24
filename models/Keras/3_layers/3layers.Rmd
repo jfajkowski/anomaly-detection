@@ -9,11 +9,19 @@ gc()
 ```
 
 ```{r}
+devtools::install_github("rstudio/reticulate", force = TRUE)
+```
+
+```{r}
 #prepare data
 
 library('keras')
 library('tensorflow')
 
+```
+
+```{r}
+source("3layers_config.R")
 ```
 
 ```{r}
@@ -30,16 +38,17 @@ Model created with Keras library functions. The net contains 3 dense hidden leay
 ```{r}
 model <- keras_model_sequential()
 model %>%
-  layer_dense(units = firstLayerUnits, activation = firstLayerActivation, input_shape = ncol(x_train)) %>%
-  layer_dense(units = secondLayerUnits, activation = secondLayerActivation) %>%
-  layer_dense(units = thirdLayerUnits, activation = thirdLayerActivation) %>%
-  layer_dense(units = ncol(x_train))
+  layer_dense(units = firstLayerUnits, activation = firstLayerActivation, input_shape = ncol(x_train_matrix)) %>%
+  layer_dense(units = SecondLayerUnits, activation = secondLayerActivation) %>%
+  layer_dense(units = ThirdLayerUnits, activation = thirdLayerActivation) %>%
+  layer_dense(units = ncol(x_train_matrix))
 
 summary(model)
 
 model %>% compile(
   loss = lossFunction,
-  optimizer = optimizer_adam(lr = learningRate)
+  optimizer = optimizer_adam(lr = learningRate),
+  metrics = 'accuracy'
 )
 
 checkpoint <- callback_model_checkpoint(
@@ -50,17 +59,26 @@ checkpoint <- callback_model_checkpoint(
 )
 
 early_stopping <- callback_early_stopping(patience = 5)
+```
+```{r}
+x_train_matrix[0:42]
+```
 
-#assuming that y_train contains two values: 0 - normal request, 1 - attack
+```{r}
 #fidding model with only normal requests.
 model %>% fit(
-  x = x_train_matrix[y_train == 0,], 
-  y = x_train_matrix[y_train == 0,], 
+  x = x_train_matrix,
+  y = x_train_matrix, 
   epochs = maxEpochs, 
   batch_size = batchSize,
-  validation_data = list(x_test_matrix[y_test == 0,], x_test_matrix[y_test == 0,]), 
-  callbacks = list(checkpoint, early_stopping)
-)
+  validation_split = 0.1
+  )
+#   validation_data = list(x_test, y_test)
+#  callbacks = list(checkpoint, early_stopping)
+```
+
+```{r}
+array(c(1:10), dim = c(10,1))
 ```
 
 ```{r}

@@ -24,7 +24,6 @@ source("3layers_config.R")
 
 Creating autoencoder model using autoencoder() function from ANN2 library.
 ```{r}
-
 if(huberCutOff){
   autoencoder <- autoencoder(
                         X = x_train, 
