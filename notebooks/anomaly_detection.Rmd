@@ -20,18 +20,45 @@ source("http://www.sthda.com/upload/rquery_cormat.r")
 setwd("..")
 
 #load train data
-train <- read.csv(file="./data/kddcup.csv", header = TRUE,sep=",", row.names= NULL)
+train <- read.csv(file="./data/kddcup_10%.csv", header = TRUE,sep=",", row.names= NULL)
+train['num_outbound_cmds'] = NULL
 
 #load test data
 test <- read.csv(file="./data/test_data.csv", header = TRUE,sep=",", row.names= NULL)
+test['num_outbound_cmds'] = NULL
 ```
 ```{r}
 #extract features and outcome
-x_train = train[c(1:41)]
-y_train = train[c(42)]
+x_train = train[c(1:40)]
+y_train = train[c(41)]
 
-x_test = test[c(1:41)]
-y_test = test[c(42)]
+x_test = test[c(1:40)]
+y_test = test[c(41)]
+
+```
+
+```{r}
+#principal component analysys (without categorical features)
+
+symbolic_feats <- c('protocol_type', 'service', 'flag', 'land', 'logged_in', 'is_host_login', 'is_guest_login')
+
+pca_train <- x_train[ , !(names(x_train) %in% symbolic_feats)]
+pca_train.pca <- prcomp(pca_train,center = TRUE,scale = TRUE)
+
+summary(pca_train.pca)
+```
+
+
+
+```{r}
+#normalizing function for training and testing dataset (notice that for both dataset characteristics of x_train are used)
+
+normalize <- function(x) {
+    ones = rep(1, nrow(x_train))
+    x_mean = ones %*% t(colMeans(x_train))
+    x_std = ones %*% t(apply(x_train, 2, sd))
+    (x - x_mean) / x_std
+}
 
 ```
 
@@ -44,22 +71,38 @@ library(data.table)
 #encode the symbolic features
 symbolic_feats = c('protocol_type', 'service', 'flag', 'land', 'logged_in', 'is_host_login', 'is_guest_login')
 
+x_train_rows = nrow(x_train)
+
+#combining traing and test dataset so that they have same column names after one-hot encoding
+x_combined = rbind(x_train, x_test)
+
+x_encoded <- data.frame(row.names=1:nrow(x_combined))
+
 for (f in symbolic_feats){
-  x_train_dummy = acm.disjonctif(x_train[f])
+  x_dummy = acm.disjonctif(x_combined[f])
+  x_combined[f] = NULL
   x_train[f] = NULL
-  x_train = cbind(x_train, x_train_dummy)
+  
+  #store categorical features
+  x_encoded = cbind(x_encoded, x_dummy)
 }
 
+#normalize the combined dataset without categorical features
+normalized <- normalize(x_combined)
+
+#combine normalized and encoded categorical features
+x_combined = cbind(normalized, x_encoded)
+
+#split train and test dataset
+x_train = x_combined[1:x_train_rows,]
+x_test = x_combined[(x_train_rows+1):nrow(x_combined),]
+
+
 ```
 
 ```{r}
-colnames(x_train)
+summary(normalized)
 ```
-
-```{r}
-summary(train)
-```
-
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
