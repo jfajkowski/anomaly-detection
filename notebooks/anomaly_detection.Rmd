@@ -20,12 +20,8 @@ source("http://www.sthda.com/upload/rquery_cormat.r")
 setwd("..")
 
 #load train data
-<<<<<<< HEAD
-train <- read.csv(file="./data/kddcup_10%.csv", header = TRUE,sep=",", row.names= NULL)
-train['num_outbound_cmds'] = NULL
-=======
 train <- read.csv(file="./data/train_data.csv", header = TRUE,sep=",", row.names= NULL)
->>>>>>> 03ff68243c29430dba8e085002fb5cb5068e7f63
+train['num_outbound_cmds'] = NULL
 
 #load test data
 test <- read.csv(file="./data/test_data.csv", header = TRUE,sep=",", row.names= NULL)
