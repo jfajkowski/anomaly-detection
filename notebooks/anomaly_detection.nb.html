@@ -183,251 +183,100 @@ $(document).ready(function () {
 rm(list=ls())
 gc()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICB1c2VkICAoTWIpIGdjIHRyaWdnZXIgICAoTWIpICBtYXggdXNlZCAgIChNYilcbk5jZWxscyAgMzQ3Njk5MSAxODUuNyAgICA2NTM4OTM3ICAzNDkuMyAgIDY1Mzg5MzcgIDM0OS4zXG5WY2VsbHMgNjIxMTEyNzUgNDczLjkgIDIyNzE3MTkzMCAxNzMzLjIgMjg1MDI5MDQ3IDIxNzQuNlxuIn0= -->
-<pre><code>           used  (Mb) gc trigger   (Mb)  max used   (Mb)
-Ncells  3476991 185.7    6538937  349.3   6538937  349.3
-Vcells 62111275 473.9  227171930 1733.2 285029047 2174.6</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwgcGFja2FnZXNcbmluc3RhbGwucGFja2FnZXMoXCJjb3JycGxvdFwiKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2luc3RhbGwgcGFja2FnZXNcbmluc3RhbGwucGFja2FnZXMoXCJjb3JycGxvdFwiKVxuaW5zdGFsbC5wYWNrYWdlcyhcImFkZTRcIilcbmluc3RhbGwucGFja2FnZXMoXCJkYXRhLnRhYmxlXCIpXG5zb3VyY2UoXCJodHRwOi8vd3d3LnN0aGRhLmNvbS91cGxvYWQvcnF1ZXJ5X2Nvcm1hdC5yXCIpXG5gYGAifQ== -->
 <pre class="r"><code>#install packages
-install.packages(&quot;corrplot&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSW5zdGFsbGluZyBwYWNrYWdlIGludG8g46S847ixQzovVXNlcnMvYmFydGwvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvMy4146S847iyXG4oYXMg46S847ixbGli46S847iyIGlzIHVuc3BlY2lmaWVkKVxudHJ5aW5nIFVSTCAnaHR0cHM6Ly9jcmFuLnJzdHVkaW8uY29tL2Jpbi93aW5kb3dzL2NvbnRyaWIvMy41L2NvcnJwbG90XzAuODQuemlwJ1xuQ29udGVudCB0eXBlICdhcHBsaWNhdGlvbi96aXAnIGxlbmd0aCA1NDQ5NjY2IGJ5dGVzICg1LjIgTUIpXG5kb3dubG9hZGVkIDUuMiBNQlxuIn0= -->
-<pre><code>Installing package into 㤼㸱C:/Users/bartl/Documents/R/win-library/3.5㤼㸲
-(as 㤼㸱lib㤼㸲 is unspecified)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/corrplot_0.84.zip'
-Content type 'application/zip' length 5449666 bytes (5.2 MB)
-downloaded 5.2 MB</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJhjb3JycGxvdOKAmSBzdWNjZXNzZnVsbHkgdW5wYWNrZWQgYW5kIE1ENSBzdW1zIGNoZWNrZWRcblxuVGhlIGRvd25sb2FkZWQgYmluYXJ5IHBhY2thZ2VzIGFyZSBpblxuXHRDOlxcVXNlcnNcXGJhcnRsXFxBcHBEYXRhXFxMb2NhbFxcVGVtcFxcUnRtcHFzMEdXTlxcZG93bmxvYWRlZF9wYWNrYWdlc1xuIn0= -->
-<pre><code>package ‘corrplot’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-    C:\Users\bartl\AppData\Local\Temp\Rtmpqs0GWN\downloaded_packages</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcImFkZTRcIilcbmBgYCJ9 -->
-<pre class="r"><code>install.packages(&quot;ade4&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSW5zdGFsbGluZyBwYWNrYWdlIGludG8g46S847ixQzovVXNlcnMvYmFydGwvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvMy4146S847iyXG4oYXMg46S847ixbGli46S847iyIGlzIHVuc3BlY2lmaWVkKVxudHJ5aW5nIFVSTCAnaHR0cHM6Ly9jcmFuLnJzdHVkaW8uY29tL2Jpbi93aW5kb3dzL2NvbnRyaWIvMy41L2FkZTRfMS43LTEzLnppcCdcbkNvbnRlbnQgdHlwZSAnYXBwbGljYXRpb24vemlwJyBsZW5ndGggNTIwMjk2MSBieXRlcyAoNS4wIE1CKVxuZG93bmxvYWRlZCA1LjAgTUJcbiJ9 -->
-<pre><code>Installing package into 㤼㸱C:/Users/bartl/Documents/R/win-library/3.5㤼㸲
-(as 㤼㸱lib㤼㸲 is unspecified)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/ade4_1.7-13.zip'
-Content type 'application/zip' length 5202961 bytes (5.0 MB)
-downloaded 5.0 MB</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJhhZGU04oCZIHN1Y2Nlc3NmdWxseSB1bnBhY2tlZCBhbmQgTUQ1IHN1bXMgY2hlY2tlZFxuXG5UaGUgZG93bmxvYWRlZCBiaW5hcnkgcGFja2FnZXMgYXJlIGluXG5cdEM6XFxVc2Vyc1xcYmFydGxcXEFwcERhdGFcXExvY2FsXFxUZW1wXFxSdG1wcXMwR1dOXFxkb3dubG9hZGVkX3BhY2thZ2VzXG4ifQ== -->
-<pre><code>package ‘ade4’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-    C:\Users\bartl\AppData\Local\Temp\Rtmpqs0GWN\downloaded_packages</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbC5wYWNrYWdlcyhcImRhdGEudGFibGVcIilcbmBgYCJ9 -->
-<pre class="r"><code>install.packages(&quot;data.table&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSW5zdGFsbGluZyBwYWNrYWdlIGludG8g46S847ixQzovVXNlcnMvYmFydGwvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvMy4146S847iyXG4oYXMg46S847ixbGli46S847iyIGlzIHVuc3BlY2lmaWVkKVxudHJ5aW5nIFVSTCAnaHR0cHM6Ly9jcmFuLnJzdHVkaW8uY29tL2Jpbi93aW5kb3dzL2NvbnRyaWIvMy41L2RhdGEudGFibGVfMS4xMS44LnppcCdcbkNvbnRlbnQgdHlwZSAnYXBwbGljYXRpb24vemlwJyBsZW5ndGggMTgzMjQ2NiBieXRlcyAoMS43IE1CKVxuZG93bmxvYWRlZCAxLjcgTUJcbiJ9 -->
-<pre><code>Installing package into 㤼㸱C:/Users/bartl/Documents/R/win-library/3.5㤼㸲
-(as 㤼㸱lib㤼㸲 is unspecified)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/data.table_1.11.8.zip'
-Content type 'application/zip' length 1832466 bytes (1.7 MB)
-downloaded 1.7 MB</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDigJhkYXRhLnRhYmxl4oCZIHN1Y2Nlc3NmdWxseSB1bnBhY2tlZCBhbmQgTUQ1IHN1bXMgY2hlY2tlZFxuXG5UaGUgZG93bmxvYWRlZCBiaW5hcnkgcGFja2FnZXMgYXJlIGluXG5cdEM6XFxVc2Vyc1xcYmFydGxcXEFwcERhdGFcXExvY2FsXFxUZW1wXFxSdG1wcXMwR1dOXFxkb3dubG9hZGVkX3BhY2thZ2VzXG4ifQ== -->
-<pre><code>package ‘data.table’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-    C:\Users\bartl\AppData\Local\Temp\Rtmpqs0GWN\downloaded_packages</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKFwiaHR0cDovL3d3dy5zdGhkYS5jb20vdXBsb2FkL3JxdWVyeV9jb3JtYXQuclwiKVxuYGBgIn0= -->
-<pre class="r"><code>source(&quot;http://www.sthda.com/upload/rquery_cormat.r&quot;)</code></pre>
+install.packages(&quot;corrplot&quot;)
+install.packages(&quot;ade4&quot;)
+install.packages(&quot;data.table&quot;)
+source(&quot;http://www.sthda.com/upload/rquery_cormat.r&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCIuLlwiKVxuYGBgIn0= -->
-<pre class="r"><code>setwd(&quot;..&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIEM6L1VzZXJzL2JhcnRsL0RvY3VtZW50cy9zdHVkaWEgMjAxOFovTU9XL2Fub21hbHktZGV0ZWN0aW9uIGluc2lkZSBhIG5vdGVib29rIGNodW5rLiBUaGUgd29ya2luZyBkaXJlY3Rvcnkgd2lsbCBiZSByZXNldCB3aGVuIHRoZSBjaHVuayBpcyBmaW5pc2hlZCBydW5uaW5nLiBVc2UgdGhlIGtuaXRyIHJvb3QuZGlyIG9wdGlvbiBpbiB0aGUgc2V0dXAgY2h1bmsgdG8gY2hhbmdlIHRoZSB3b3JraW5nIGRpcmVjdG9yeSBmb3Igbm90ZWJvb2sgY2h1bmtzLlxuIn0= -->
-<pre><code>The working directory was changed to C:/Users/bartl/Documents/studia 2018Z/MOW/anomaly-detection inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2xvYWQgdHJhaW4gZGF0YVxudHJhaW4gPC0gcmVhZC5jc3YoZmlsZT1cIi4vZGF0YS9rZGRjdXAuZGF0YV8xMF9wZXJjZW50LmNzdlwiLCBoZWFkZXIgPSBUUlVFLHNlcD1cIjtcIiwgcm93Lm5hbWVzPSBOVUxMKVxuI2xvYWQgdGVzdCBkYXRhXG50ZXN0IDwtIHJlYWQuY3N2KGZpbGU9XCIuL2RhdGEva2RkY3VwLmRhdGFfMTBfcGVyY2VudC5jc3ZcIiwgaGVhZGVyID0gVFJVRSxzZXA9XCI7XCIsIHJvdy5uYW1lcz0gTlVMTClcbmBgYCJ9 -->
-<pre class="r"><code>#load train data
-train &lt;- read.csv(file=&quot;./data/kddcup.data_10_percent.csv&quot;, header = TRUE,sep=&quot;;&quot;, row.names= NULL)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCIuLlwiKVxuI2xvYWQgdHJhaW4gZGF0YVxudHJhaW4gPC0gcmVhZC5jc3YoZmlsZT1cIi4vZGF0YS90cmFpbl9kYXRhLmNzdlwiLCBoZWFkZXIgPSBUUlVFLHNlcD1cIixcIiwgcm93Lm5hbWVzPSBOVUxMKVxudHJhaW5bJ251bV9vdXRib3VuZF9jbWRzJ10gPSBOVUxMXG4jbG9hZCB0ZXN0IGRhdGFcbnRlc3QgPC0gcmVhZC5jc3YoZmlsZT1cIi4vZGF0YS90ZXN0X2RhdGEuY3N2XCIsIGhlYWRlciA9IFRSVUUsc2VwPVwiLFwiLCByb3cubmFtZXM9IE5VTEwpXG50ZXN0WydudW1fb3V0Ym91bmRfY21kcyddID0gTlVMTFxuYGBgIn0= -->
+<pre class="r"><code>setwd(&quot;..&quot;)
+#load train data
+train &lt;- read.csv(file=&quot;./data/train_data.csv&quot;, header = TRUE,sep=&quot;,&quot;, row.names= NULL)
+train['num_outbound_cmds'] = NULL
 #load test data
-test &lt;- read.csv(file=&quot;./data/kddcup.data_10_percent.csv&quot;, header = TRUE,sep=&quot;;&quot;, row.names= NULL)</code></pre>
+test &lt;- read.csv(file=&quot;./data/test_data.csv&quot;, header = TRUE,sep=&quot;,&quot;, row.names= NULL)
+test['num_outbound_cmds'] = NULL</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2V4dHJhY3QgZmVhdHVyZXMgYW5kIG91dGNvbWVcbnhfdHJhaW4gPSB0cmFpbltjKDE6NDEpXVxueV90cmFpbiA9IHRyYWluW2MoNDIpXVxueF90ZXN0ID0gdGVzdFtjKDE6NDEpXVxueV90ZXN0ID0gdGVzdFtjKDQyKV1cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2V4dHJhY3QgZmVhdHVyZXMgYW5kIG91dGNvbWVcbnhfdHJhaW4gPSB0cmFpbltjKDE6NDApXVxueV90cmFpbiA9IHRyYWluW2MoNDEpXVxueF90ZXN0ID0gdGVzdFtjKDE6NDApXVxueV90ZXN0ID0gdGVzdFtjKDQxKV1cbmBgYCJ9 -->
 <pre class="r"><code>#extract features and outcome
-x_train = train[c(1:41)]
-y_train = train[c(42)]
-x_test = test[c(1:41)]
-y_test = test[c(42)]</code></pre>
+x_train = train[c(1:40)]
+y_train = train[c(41)]
+x_test = test[c(1:40)]
+y_test = test[c(41)]</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI29uZS1ob3QgZW5jb2RpbmdcbmxpYnJhcnkoYWRlNClcbmxpYnJhcnkoZGF0YS50YWJsZSlcbmBgYCJ9 -->
-<pre class="r"><code>#one-hot encoding
-library(ade4)
-library(data.table)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3ByaW5jaXBhbCBjb21wb25lbnQgYW5hbHlzeXMgKHdpdGhvdXQgY2F0ZWdvcmljYWwgZmVhdHVyZXMpXG5zeW1ib2xpY19mZWF0cyA8LSBjKCdwcm90b2NvbF90eXBlJywgJ3NlcnZpY2UnLCAnZmxhZycsICdsYW5kJywgJ2xvZ2dlZF9pbicsICdpc19ob3N0X2xvZ2luJywgJ2lzX2d1ZXN0X2xvZ2luJylcbnBjYV90cmFpbiA8LSB4X3RyYWluWyAsICEobmFtZXMoeF90cmFpbikgJWluJSBzeW1ib2xpY19mZWF0cyldXG5wY2FfdHJhaW4ucGNhIDwtIHByY29tcChwY2FfdHJhaW4sY2VudGVyID0gVFJVRSxzY2FsZSA9IFRSVUUpXG5zdW1tYXJ5KHBjYV90cmFpbi5wY2EpXG5gYGAifQ== -->
+<pre class="r"><code>#principal component analysys (without categorical features)
+symbolic_feats &lt;- c('protocol_type', 'service', 'flag', 'land', 'logged_in', 'is_host_login', 'is_guest_login')
+pca_train &lt;- x_train[ , !(names(x_train) %in% symbolic_feats)]
+pca_train.pca &lt;- prcomp(pca_train,center = TRUE,scale = TRUE)
+summary(pca_train.pca)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZGF0YS50YWJsZSAxLjExLjggIExhdGVzdCBuZXdzOiByLWRhdGF0YWJsZS5jb21cbiJ9 -->
-<pre><code>data.table 1.11.8  Latest news: r-datatable.com</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2VuY29kZSB0aGUgc3ltYm9saWMgZmVhdHVyZXNcbnN5bWJvbGljX2ZlYXRzID0gYygncHJvdG9jb2xfdHlwZScsICdzZXJ2aWNlJywgJ2ZsYWcnLCAnbGFuZCcsICdsb2dnZWRfaW4nLCAnaXNfaG9zdF9sb2dpbicsICdpc19ndWVzdF9sb2dpbicpXG5mb3IgKGYgaW4gc3ltYm9saWNfZmVhdHMpe1xuICB4X3RyYWluX2R1bW15ID0gYWNtLmRpc2pvbmN0aWYoeF90cmFpbltmXSlcbiAgeF90cmFpbltmXSA9IE5VTExcbiAgeF90cmFpbiA9IGNiaW5kKHhfdHJhaW4sIHhfdHJhaW5fZHVtbXkpXG59XG5gYGAifQ== -->
-<pre class="r"><code>#encode the symbolic features
-symbolic_feats = c('protocol_type', 'service', 'flag', 'land', 'logged_in', 'is_host_login', 'is_guest_login')
-for (f in symbolic_feats){
-  x_train_dummy = acm.disjonctif(x_train[f])
-  x_train[f] = NULL
-  x_train = cbind(x_train, x_train_dummy)
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI25vcm1hbGl6aW5nIGZ1bmN0aW9uIGZvciB0cmFpbmluZyBhbmQgdGVzdGluZyBkYXRhc2V0IChub3RpY2UgdGhhdCBmb3IgYm90aCBkYXRhc2V0IGNoYXJhY3RlcmlzdGljcyBvZiB4X3RyYWluIGFyZSB1c2VkKVxubm9ybWFsaXplIDwtIGZ1bmN0aW9uKHgpIHtcbiAgICBvbmVzID0gcmVwKDEsIG5yb3coeF90cmFpbikpXG4gICAgeF9tZWFuID0gb25lcyAlKiUgdChjb2xNZWFucyh4X3RyYWluKSlcbiAgICB4X3N0ZCA9IG9uZXMgJSolIHQoYXBwbHkoeF90cmFpbiwgMiwgc2QpKVxuICAgICh4IC0geF9tZWFuKSAvIHhfc3RkXG59XG5gYGAifQ== -->
+<pre class="r"><code>#normalizing function for training and testing dataset (notice that for both dataset characteristics of x_train are used)
+normalize &lt;- function(x) {
+    ones = rep(1, nrow(x_train))
+    x_mean = ones %*% t(colMeans(x_train))
+    x_std = ones %*% t(apply(x_train, 2, sd))
+    (x - x_mean) / x_std
 }</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueV90cmFpbiA9IGFjbS5kaXNqb25jdGlmKHlfdHJhaW4pXG5gYGAifQ== -->
-<pre class="r"><code>y_train = acm.disjonctif(y_train)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI29uZS1ob3QgZW5jb2RpbmdcbmxpYnJhcnkoYWRlNClcbmxpYnJhcnkoZGF0YS50YWJsZSlcbiNlbmNvZGUgdGhlIHN5bWJvbGljIGZlYXR1cmVzXG5zeW1ib2xpY19mZWF0cyA9IGMoJ3Byb3RvY29sX3R5cGUnLCAnc2VydmljZScsICdmbGFnJywgJ2xhbmQnLCAnbG9nZ2VkX2luJywgJ2lzX2hvc3RfbG9naW4nLCAnaXNfZ3Vlc3RfbG9naW4nKVxueF90cmFpbl9yb3dzID0gbnJvdyh4X3RyYWluKVxuI2NvbWJpbmluZyB0cmFpbmcgYW5kIHRlc3QgZGF0YXNldCBzbyB0aGF0IHRoZXkgaGF2ZSBzYW1lIGNvbHVtbiBuYW1lcyBhZnRlciBvbmUtaG90IGVuY29kaW5nXG54X2NvbWJpbmVkID0gcmJpbmQoeF90cmFpbiwgeF90ZXN0KVxueF9lbmNvZGVkIDwtIGRhdGEuZnJhbWUocm93Lm5hbWVzPTE6bnJvdyh4X2NvbWJpbmVkKSlcbmZvciAoZiBpbiBzeW1ib2xpY19mZWF0cyl7XG4gIHhfZHVtbXkgPSBhY20uZGlzam9uY3RpZih4X2NvbWJpbmVkW2ZdKVxuICB4X2NvbWJpbmVkW2ZdID0gTlVMTFxuICB4X3RyYWluW2ZdID0gTlVMTFxuICBcbiAgI3N0b3JlIGNhdGVnb3JpY2FsIGZlYXR1cmVzXG4gIHhfZW5jb2RlZCA9IGNiaW5kKHhfZW5jb2RlZCwgeF9kdW1teSlcbn1cbiNub3JtYWxpemUgdGhlIGNvbWJpbmVkIGRhdGFzZXQgd2l0aG91dCBjYXRlZ29yaWNhbCBmZWF0dXJlc1xubm9ybWFsaXplZCA8LSBub3JtYWxpemUoeF9jb21iaW5lZClcbiNjb21iaW5lIG5vcm1hbGl6ZWQgYW5kIGVuY29kZWQgY2F0ZWdvcmljYWwgZmVhdHVyZXNcbnhfY29tYmluZWQgPSBjYmluZChub3JtYWxpemVkLCB4X2VuY29kZWQpXG4jc3BsaXQgdHJhaW4gYW5kIHRlc3QgZGF0YXNldFxueF90cmFpbiA9IHhfY29tYmluZWRbMTp4X3RyYWluX3Jvd3MsXVxueF90ZXN0ID0geF9jb21iaW5lZFsoeF90cmFpbl9yb3dzKzEpOm5yb3coeF9jb21iaW5lZCksXVxuYGBgIn0= -->
+<pre class="r"><code>#one-hot encoding
+library(ade4)
+library(data.table)
+#encode the symbolic features
+symbolic_feats = c('protocol_type', 'service', 'flag', 'land', 'logged_in', 'is_host_login', 'is_guest_login')
+x_train_rows = nrow(x_train)
+#combining traing and test dataset so that they have same column names after one-hot encoding
+x_combined = rbind(x_train, x_test)
+x_encoded &lt;- data.frame(row.names=1:nrow(x_combined))
+for (f in symbolic_feats){
+  x_dummy = acm.disjonctif(x_combined[f])
+  x_combined[f] = NULL
+  x_train[f] = NULL
+  
+  #store categorical features
+  x_encoded = cbind(x_encoded, x_dummy)
+}
+#normalize the combined dataset without categorical features
+normalized &lt;- normalize(x_combined)
+#combine normalized and encoded categorical features
+x_combined = cbind(normalized, x_encoded)
+#split train and test dataset
+x_train = x_combined[1:x_train_rows,]
+x_test = x_combined[(x_train_rows+1):nrow(x_combined),]</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sbmFtZXMoeF90cmFpbilcbmBgYCJ9 -->
-<pre class="r"><code>colnames(x_train)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShub3JtYWxpemVkKVxuYGBgIn0= -->
+<pre class="r"><code>summary(normalized)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICBbMV0gXCJkdXJhdGlvblwiICAgICAgICAgICAgICAgICAgICBcInNyY19ieXRlc1wiICAgICAgICAgICAgICAgICAgIFwiZHN0X2J5dGVzXCIgICAgICAgICAgICAgICAgICBcbiAgWzRdIFwid3JvbmdfZnJhZ21lbnRcIiAgICAgICAgICAgICAgXCJ1cmdlbnRcIiAgICAgICAgICAgICAgICAgICAgICBcImhvdFwiICAgICAgICAgICAgICAgICAgICAgICAgXG4gIFs3XSBcIm51bV9mYWlsZWRfbG9naW5zXCIgICAgICAgICAgIFwibnVtX2NvbXByb21pc2VkXCIgICAgICAgICAgICAgXCJyb290X3NoZWxsXCIgICAgICAgICAgICAgICAgIFxuIFsxMF0gXCJzdV9hdHRlbXB0ZWRcIiAgICAgICAgICAgICAgICBcIm51bV9yb290XCIgICAgICAgICAgICAgICAgICAgIFwibnVtX2ZpbGVfY3JlYXRpb25zXCIgICAgICAgICBcbiBbMTNdIFwibnVtX3NoZWxsc1wiICAgICAgICAgICAgICAgICAgXCJudW1fYWNjZXNzX2ZpbGVzXCIgICAgICAgICAgICBcIm51bV9vdXRib3VuZF9jbWRzXCIgICAgICAgICAgXG4gWzE2XSBcImNvdW50XCIgICAgICAgICAgICAgICAgICAgICAgIFwic3J2X2NvdW50XCIgICAgICAgICAgICAgICAgICAgXCJzZXJyb3JfcmF0ZVwiICAgICAgICAgICAgICAgIFxuIFsxOV0gXCJzcnZfZXJyb3JfcmF0ZVwiICAgICAgICAgICAgICBcInJlcnJvcl9yYXRlXCIgICAgICAgICAgICAgICAgIFwic3J2X3JlcnJvcl9yYXRlXCIgICAgICAgICAgICBcbiBbMjJdIFwic2FtZV9zcnZfcmF0ZVwiICAgICAgICAgICAgICAgXCJkaWZmX3Nydl9yYXRlXCIgICAgICAgICAgICAgICBcInNydl9kaWZmX2hvc3RfcmF0ZVwiICAgICAgICAgXG4gWzI1XSBcImRzdF9ob3N0X2NvdW50XCIgICAgICAgICAgICAgIFwiZHN0X2hvc3Rfc3J2X2NvdW50XCIgICAgICAgICAgXCJkc3RfaG9zdF9zcnZfc2FtZV9yYXRlXCIgICAgIFxuIFsyOF0gXCJkc3RfaG9zdF9kaWZmX3Nydl9yYXRlXCIgICAgICBcImRzdF9ob3N0X3NhbWVfc3JjX3BvcnRfcmF0ZVwiIFwiZHN0X2hvc3Rfc3J2X2RpZmZfaG9zdF9yYXRlXCJcbiBbMzFdIFwiZHN0X2hvc3Rfc2Vycm9yX3JhdGVcIiAgICAgICAgXCJkc3RfaG9zdF9zcnZfZXJyb3JfcmF0ZVwiICAgICBcImRzdF9ob3N0X3JlcnJvcl9yYXRlXCIgICAgICAgXG4gWzM0XSBcImRzdF9ob3N0X3Nydl9yZXJyb3JfcmF0ZVwiICAgIFwicHJvdG9jb2xfdHlwZS5pY21wXCIgICAgICAgICAgXCJwcm90b2NvbF90eXBlLnRjcFwiICAgICAgICAgIFxuIFszN10gXCJwcm90b2NvbF90eXBlLnVkcFwiICAgICAgICAgICBcInNlcnZpY2UuYXV0aFwiICAgICAgICAgICAgICAgIFwic2VydmljZS5iZ3BcIiAgICAgICAgICAgICAgICBcbiBbNDBdIFwic2VydmljZS5jb3VyaWVyXCIgICAgICAgICAgICAgXCJzZXJ2aWNlLmNzbmV0X25zXCIgICAgICAgICAgICBcInNlcnZpY2UuY3RmXCIgICAgICAgICAgICAgICAgXG4gWzQzXSBcInNlcnZpY2UuZGF5dGltZVwiICAgICAgICAgICAgIFwic2VydmljZS5kaXNjYXJkXCIgICAgICAgICAgICAgXCJzZXJ2aWNlLmRvbWFpblwiICAgICAgICAgICAgIFxuIFs0Nl0gXCJzZXJ2aWNlLmRvbWFpbl91XCIgICAgICAgICAgICBcInNlcnZpY2UuZWNob1wiICAgICAgICAgICAgICAgIFwic2VydmljZS5lY29faVwiICAgICAgICAgICAgICBcbiBbNDldIFwic2VydmljZS5lY3JfaVwiICAgICAgICAgICAgICAgXCJzZXJ2aWNlLmVmc1wiICAgICAgICAgICAgICAgICBcInNlcnZpY2UuZXhlY1wiICAgICAgICAgICAgICAgXG4gWzUyXSBcInNlcnZpY2UuZmluZ2VyXCIgICAgICAgICAgICAgIFwic2VydmljZS5mdHBcIiAgICAgICAgICAgICAgICAgXCJzZXJ2aWNlLmZ0cF9kYXRhXCIgICAgICAgICAgIFxuIFs1NV0gXCJzZXJ2aWNlLmdvcGhlclwiICAgICAgICAgICAgICBcInNlcnZpY2UuaG9zdG5hbWVzXCIgICAgICAgICAgIFwic2VydmljZS5odHRwXCIgICAgICAgICAgICAgICBcbiBbNThdIFwic2VydmljZS5odHRwXzQ0M1wiICAgICAgICAgICAgXCJzZXJ2aWNlLmltYXA0XCIgICAgICAgICAgICAgICBcInNlcnZpY2UuSVJDXCIgICAgICAgICAgICAgICAgXG4gWzYxXSBcInNlcnZpY2UuaXNvX3RzYXBcIiAgICAgICAgICAgIFwic2VydmljZS5rbG9naW5cIiAgICAgICAgICAgICAgXCJzZXJ2aWNlLmtzaGVsbFwiICAgICAgICAgICAgIFxuIFs2NF0gXCJzZXJ2aWNlLmxkYXBcIiAgICAgICAgICAgICAgICBcInNlcnZpY2UubGlua1wiICAgICAgICAgICAgICAgIFwic2VydmljZS5sb2dpblwiICAgICAgICAgICAgICBcbiBbNjddIFwic2VydmljZS5tdHBcIiAgICAgICAgICAgICAgICAgXCJzZXJ2aWNlLm5hbWVcIiAgICAgICAgICAgICAgICBcInNlcnZpY2UubmV0Ymlvc19kZ21cIiAgICAgICAgXG4gWzcwXSBcInNlcnZpY2UubmV0Ymlvc19uc1wiICAgICAgICAgIFwic2VydmljZS5uZXRiaW9zX3NzblwiICAgICAgICAgXCJzZXJ2aWNlLm5ldHN0YXRcIiAgICAgICAgICAgIFxuIFs3M10gXCJzZXJ2aWNlLm5uc3BcIiAgICAgICAgICAgICAgICBcInNlcnZpY2Uubm50cFwiICAgICAgICAgICAgICAgIFwic2VydmljZS5udHBfdVwiICAgICAgICAgICAgICBcbiBbNzZdIFwic2VydmljZS5vdGhlclwiICAgICAgICAgICAgICAgXCJzZXJ2aWNlLnBtX2R1bXBcIiAgICAgICAgICAgICBcInNlcnZpY2UucG9wXzJcIiAgICAgICAgICAgICAgXG4gWzc5XSBcInNlcnZpY2UucG9wXzNcIiAgICAgICAgICAgICAgIFwic2VydmljZS5wcmludGVyXCIgICAgICAgICAgICAgXCJzZXJ2aWNlLnByaXZhdGVcIiAgICAgICAgICAgIFxuIFs4Ml0gXCJzZXJ2aWNlLnJlZF9pXCIgICAgICAgICAgICAgICBcInNlcnZpY2UucmVtb3RlX2pvYlwiICAgICAgICAgIFwic2VydmljZS5yamVcIiAgICAgICAgICAgICAgICBcbiBbODVdIFwic2VydmljZS5zaGVsbFwiICAgICAgICAgICAgICAgXCJzZXJ2aWNlLnNtdHBcIiAgICAgICAgICAgICAgICBcInNlcnZpY2Uuc3FsX25ldFwiICAgICAgICAgICAgXG4gWzg4XSBcInNlcnZpY2Uuc3NoXCIgICAgICAgICAgICAgICAgIFwic2VydmljZS5zdW5ycGNcIiAgICAgICAgICAgICAgXCJzZXJ2aWNlLnN1cGR1cFwiICAgICAgICAgICAgIFxuIFs5MV0gXCJzZXJ2aWNlLnN5c3RhdFwiICAgICAgICAgICAgICBcInNlcnZpY2UudGVsbmV0XCIgICAgICAgICAgICAgIFwic2VydmljZS50ZnRwX3VcIiAgICAgICAgICAgICBcbiBbOTRdIFwic2VydmljZS50aW1faVwiICAgICAgICAgICAgICAgXCJzZXJ2aWNlLnRpbWVcIiAgICAgICAgICAgICAgICBcInNlcnZpY2UudXJoX2lcIiAgICAgICAgICAgICAgXG4gWzk3XSBcInNlcnZpY2UudXJwX2lcIiAgICAgICAgICAgICAgIFwic2VydmljZS51dWNwXCIgICAgICAgICAgICAgICAgXCJzZXJ2aWNlLnV1Y3BfcGF0aFwiICAgICAgICAgIFxuWzEwMF0gXCJzZXJ2aWNlLnZtbmV0XCIgICAgICAgICAgICAgICBcInNlcnZpY2Uud2hvaXNcIiAgICAgICAgICAgICAgIFwic2VydmljZS5YMTFcIiAgICAgICAgICAgICAgICBcblsxMDNdIFwic2VydmljZS5aMzlfNTBcIiAgICAgICAgICAgICAgXCJmbGFnLk9USFwiICAgICAgICAgICAgICAgICAgICBcImZsYWcuUkVKXCIgICAgICAgICAgICAgICAgICAgXG5bMTA2XSBcImZsYWcuUlNUT1wiICAgICAgICAgICAgICAgICAgIFwiZmxhZy5SU1RPUzBcIiAgICAgICAgICAgICAgICAgXCJmbGFnLlJTVFJcIiAgICAgICAgICAgICAgICAgIFxuWzEwOV0gXCJmbGFnLlMwXCIgICAgICAgICAgICAgICAgICAgICBcImZsYWcuUzFcIiAgICAgICAgICAgICAgICAgICAgIFwiZmxhZy5TMlwiICAgICAgICAgICAgICAgICAgICBcblsxMTJdIFwiZmxhZy5TM1wiICAgICAgICAgICAgICAgICAgICAgXCJmbGFnLlNGXCIgICAgICAgICAgICAgICAgICAgICBcImZsYWcuU0hcIiAgICAgICAgICAgICAgICAgICAgXG5bMTE1XSBcImxhbmQuMFwiICAgICAgICAgICAgICAgICAgICAgIFwibGFuZC4xXCIgICAgICAgICAgICAgICAgICAgICAgXCJsb2dnZWRfaW4uMFwiICAgICAgICAgICAgICAgIFxuWzExOF0gXCJsb2dnZWRfaW4uMVwiICAgICAgICAgICAgICAgICBcImlzX2hvc3RfbG9naW4uMFwiICAgICAgICAgICAgIFwiaXNfZ3Vlc3RfbG9naW4uMFwiICAgICAgICAgICBcblsxMjFdIFwiaXNfZ3Vlc3RfbG9naW4uMVwiICAgICAgICAgICBcbiJ9 -->
-<pre><code>  [1] &quot;duration&quot;                    &quot;src_bytes&quot;                   &quot;dst_bytes&quot;                  
-  [4] &quot;wrong_fragment&quot;              &quot;urgent&quot;                      &quot;hot&quot;                        
-  [7] &quot;num_failed_logins&quot;           &quot;num_compromised&quot;             &quot;root_shell&quot;                 
- [10] &quot;su_attempted&quot;                &quot;num_root&quot;                    &quot;num_file_creations&quot;         
- [13] &quot;num_shells&quot;                  &quot;num_access_files&quot;            &quot;num_outbound_cmds&quot;          
- [16] &quot;count&quot;                       &quot;srv_count&quot;                   &quot;serror_rate&quot;                
- [19] &quot;srv_error_rate&quot;              &quot;rerror_rate&quot;                 &quot;srv_rerror_rate&quot;            
- [22] &quot;same_srv_rate&quot;               &quot;diff_srv_rate&quot;               &quot;srv_diff_host_rate&quot;         
- [25] &quot;dst_host_count&quot;              &quot;dst_host_srv_count&quot;          &quot;dst_host_srv_same_rate&quot;     
- [28] &quot;dst_host_diff_srv_rate&quot;      &quot;dst_host_same_src_port_rate&quot; &quot;dst_host_srv_diff_host_rate&quot;
- [31] &quot;dst_host_serror_rate&quot;        &quot;dst_host_srv_error_rate&quot;     &quot;dst_host_rerror_rate&quot;       
- [34] &quot;dst_host_srv_rerror_rate&quot;    &quot;protocol_type.icmp&quot;          &quot;protocol_type.tcp&quot;          
- [37] &quot;protocol_type.udp&quot;           &quot;service.auth&quot;                &quot;service.bgp&quot;                
- [40] &quot;service.courier&quot;             &quot;service.csnet_ns&quot;            &quot;service.ctf&quot;                
- [43] &quot;service.daytime&quot;             &quot;service.discard&quot;             &quot;service.domain&quot;             
- [46] &quot;service.domain_u&quot;            &quot;service.echo&quot;                &quot;service.eco_i&quot;              
- [49] &quot;service.ecr_i&quot;               &quot;service.efs&quot;                 &quot;service.exec&quot;               
- [52] &quot;service.finger&quot;              &quot;service.ftp&quot;                 &quot;service.ftp_data&quot;           
- [55] &quot;service.gopher&quot;              &quot;service.hostnames&quot;           &quot;service.http&quot;               
- [58] &quot;service.http_443&quot;            &quot;service.imap4&quot;               &quot;service.IRC&quot;                
- [61] &quot;service.iso_tsap&quot;            &quot;service.klogin&quot;              &quot;service.kshell&quot;             
- [64] &quot;service.ldap&quot;                &quot;service.link&quot;                &quot;service.login&quot;              
- [67] &quot;service.mtp&quot;                 &quot;service.name&quot;                &quot;service.netbios_dgm&quot;        
- [70] &quot;service.netbios_ns&quot;          &quot;service.netbios_ssn&quot;         &quot;service.netstat&quot;            
- [73] &quot;service.nnsp&quot;                &quot;service.nntp&quot;                &quot;service.ntp_u&quot;              
- [76] &quot;service.other&quot;               &quot;service.pm_dump&quot;             &quot;service.pop_2&quot;              
- [79] &quot;service.pop_3&quot;               &quot;service.printer&quot;             &quot;service.private&quot;            
- [82] &quot;service.red_i&quot;               &quot;service.remote_job&quot;          &quot;service.rje&quot;                
- [85] &quot;service.shell&quot;               &quot;service.smtp&quot;                &quot;service.sql_net&quot;            
- [88] &quot;service.ssh&quot;                 &quot;service.sunrpc&quot;              &quot;service.supdup&quot;             
- [91] &quot;service.systat&quot;              &quot;service.telnet&quot;              &quot;service.tftp_u&quot;             
- [94] &quot;service.tim_i&quot;               &quot;service.time&quot;                &quot;service.urh_i&quot;              
- [97] &quot;service.urp_i&quot;               &quot;service.uucp&quot;                &quot;service.uucp_path&quot;          
-[100] &quot;service.vmnet&quot;               &quot;service.whois&quot;               &quot;service.X11&quot;                
-[103] &quot;service.Z39_50&quot;              &quot;flag.OTH&quot;                    &quot;flag.REJ&quot;                   
-[106] &quot;flag.RSTO&quot;                   &quot;flag.RSTOS0&quot;                 &quot;flag.RSTR&quot;                  
-[109] &quot;flag.S0&quot;                     &quot;flag.S1&quot;                     &quot;flag.S2&quot;                    
-[112] &quot;flag.S3&quot;                     &quot;flag.SF&quot;                     &quot;flag.SH&quot;                    
-[115] &quot;land.0&quot;                      &quot;land.1&quot;                      &quot;logged_in.0&quot;                
-[118] &quot;logged_in.1&quot;                 &quot;is_host_login.0&quot;             &quot;is_guest_login.0&quot;           
-[121] &quot;is_guest_login.1&quot;           </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeSh0cmFpbilcbmBgYCJ9 -->
-<pre class="r"><code>summary(train)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgIGR1cmF0aW9uICAgICAgICBwcm90b2NvbF90eXBlICAgICBzZXJ2aWNlICAgICAgICAgICAgZmxhZyAgICAgICAgICBzcmNfYnl0ZXMgICAgICAgIFxuIE1pbi4gICA6ICAgIDAuMDAgICBpY21wOjI4MzYwMiAgIGVjcl9pICAgOjI4MTQwMCAgIFNGICAgICA6Mzc4NDM5ICAgTWluLiAgIDogICAgICAgIDAgIFxuIDFzdCBRdS46ICAgIDAuMDAgICB0Y3AgOjE5MDA2NSAgIHByaXZhdGUgOjExMDg5NCAgIFMwICAgICA6IDg3MDA4ICAgMXN0IFF1LjogICAgICAgNDUgIFxuIE1lZGlhbiA6ICAgIDAuMDAgICB1ZHAgOiAyMDM1NCAgIGh0dHAgICAgOiA2NDI5MiAgIFJFSiAgICA6IDI2ODc1ICAgTWVkaWFuIDogICAgICA1MjAgIFxuIE1lYW4gICA6ICAgNDcuOTggICAgICAgICAgICAgICAgIHNtdHAgICAgOiAgOTcyMyAgIFJTVFIgICA6ICAgOTAzICAgTWVhbiAgIDogICAgIDMwMjYgIFxuIDNyZCBRdS46ICAgIDAuMDAgICAgICAgICAgICAgICAgIG90aGVyICAgOiAgNzIzNyAgIFJTVE8gICA6ICAgNTc5ICAgM3JkIFF1LjogICAgIDEwMzIgIFxuIE1heC4gICA6NTgzMjkuMDAgICAgICAgICAgICAgICAgIGRvbWFpbl91OiAgNTg2MyAgIFNIICAgICA6ICAgMTA3ICAgTWF4LiAgIDo2OTMzNzU2NDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChPdGhlcikgOiAxNDYxMiAgIChPdGhlcik6ICAgMTEwICAgICAgICAgICAgICAgICAgICAgIFxuICAgZHN0X2J5dGVzICAgICAgICAgICAgbGFuZCAgICAgICAgICB3cm9uZ19mcmFnbWVudCAgICAgICAgIHVyZ2VudCAgICAgICAgICAgICAgaG90ICAgICAgICAgIFxuIE1pbi4gICA6ICAgICAgMCAgIE1pbi4gICA6MC4wMGUrMDAgICBNaW4uICAgOjAuMDAwMDAwICAgTWluLiAgIDowLjAwZSswMCAgIE1pbi4gICA6IDAuMDAwMDAgIFxuIDFzdCBRdS46ICAgICAgMCAgIDFzdCBRdS46MC4wMGUrMDAgICAxc3QgUXUuOjAuMDAwMDAwICAgMXN0IFF1LjowLjAwZSswMCAgIDFzdCBRdS46IDAuMDAwMDAgIFxuIE1lZGlhbiA6ICAgICAgMCAgIE1lZGlhbiA6MC4wMGUrMDAgICBNZWRpYW4gOjAuMDAwMDAwICAgTWVkaWFuIDowLjAwZSswMCAgIE1lZGlhbiA6IDAuMDAwMDAgIFxuIE1lYW4gICA6ICAgIDg2OSAgIE1lYW4gICA6NC40NWUtMDUgICBNZWFuICAgOjAuMDA2NDMzICAgTWVhbiAgIDoxLjQyZS0wNSAgIE1lYW4gICA6IDAuMDM0NTIgIFxuIDNyZCBRdS46ICAgICAgMCAgIDNyZCBRdS46MC4wMGUrMDAgICAzcmQgUXUuOjAuMDAwMDAwICAgM3JkIFF1LjowLjAwZSswMCAgIDNyZCBRdS46IDAuMDAwMDAgIFxuIE1heC4gICA6NTE1NTQ2OCAgIE1heC4gICA6MS4wMGUrMDAgICBNYXguICAgOjMuMDAwMDAwICAgTWF4LiAgIDozLjAwZSswMCAgIE1heC4gICA6MzAuMDAwMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIG51bV9mYWlsZWRfbG9naW5zICAgIGxvZ2dlZF9pbiAgICAgIG51bV9jb21wcm9taXNlZCAgICAgIHJvb3Rfc2hlbGwgICAgICAgICBzdV9hdHRlbXB0ZWQgICAgIFxuIE1pbi4gICA6MC4wMDAwMDAgICBNaW4uICAgOjAuMDAwMCAgIE1pbi4gICA6ICAwLjAwMDAgICBNaW4uICAgOjAuMDAwMDAwMCAgIE1pbi4gICA6MC4wMGUrMDAgIFxuIDFzdCBRdS46MC4wMDAwMDAgICAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46ICAwLjAwMDAgICAxc3QgUXUuOjAuMDAwMDAwMCAgIDFzdCBRdS46MC4wMGUrMDAgIFxuIE1lZGlhbiA6MC4wMDAwMDAgICBNZWRpYW4gOjAuMDAwMCAgIE1lZGlhbiA6ICAwLjAwMDAgICBNZWRpYW4gOjAuMDAwMDAwMCAgIE1lZGlhbiA6MC4wMGUrMDAgIFxuIE1lYW4gICA6MC4wMDAxNTIgICBNZWFuICAgOjAuMTQ4MiAgIE1lYW4gICA6ICAwLjAxMDIgICBNZWFuICAgOjAuMDAwMTExMyAgIE1lYW4gICA6My42NGUtMDUgIFxuIDNyZCBRdS46MC4wMDAwMDAgICAzcmQgUXUuOjAuMDAwMCAgIDNyZCBRdS46ICAwLjAwMDAgICAzcmQgUXUuOjAuMDAwMDAwMCAgIDNyZCBRdS46MC4wMGUrMDAgIFxuIE1heC4gICA6NS4wMDAwMDAgICBNYXguICAgOjEuMDAwMCAgIE1heC4gICA6ODg0LjAwMDAgICBNYXguICAgOjEuMDAwMDAwMCAgIE1heC4gICA6Mi4wMGUrMDAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgIG51bV9yb290ICAgICAgbnVtX2ZpbGVfY3JlYXRpb25zIG51bV9zaGVsbHMgIG51bV9hY2Nlc3NfZmlsZXMgICBudW1fb3V0Ym91bmRfY21kcyAgIGlzX2hvc3RfbG9naW5cbiAwICAgICAgOjQ5MzQzNSAgIDAgICAgICA6NDkzNzU1ICAgICAwIDo0OTM5NjkgICBNaW4uICAgOiAgMC4wMDAwICAgTWluLiAgIDogICAwLjAwMDAgICBNaW4uICAgOjAgICAgXG4gMSAgICAgIDogICAyMzMgICAxICAgICAgOiAgIDIwNyAgICAgMSA6ICAgIDQ4ICAgMXN0IFF1LjogIDAuMDAwMCAgIDFzdCBRdS46ICAgMC4wMDAwICAgMXN0IFF1LjowICAgIFxuIDkgICAgICA6ICAgMTY3ICAgMiAgICAgIDogICAgMzYgICAgIDIgOiAgICAgMyAgIE1lZGlhbiA6ICAwLjAwMDAgICBNZWRpYW4gOiAgIDAuMDAwMCAgIE1lZGlhbiA6MCAgICBcbiA2ICAgICAgOiAgIDEyNiAgIDQgICAgICA6ICAgICA3ICAgICBTRjogICAgIDEgICBNZWFuICAgOiAgMC4wMDE3ICAgTWVhbiAgIDogICAwLjAwMzQgICBNZWFuICAgOjAgICAgXG4gMiAgICAgIDogICAgMjIgICAxNiAgICAgOiAgICAgMiAgICAgICAgICAgICAgICAgM3JkIFF1LjogIDAuMDAwMCAgIDNyZCBRdS46ICAgMC4wMDAwICAgM3JkIFF1LjowICAgIFxuIDUgICAgICA6ICAgIDEyICAgMTAgICAgIDogICAgIDEgICAgICAgICAgICAgICAgIE1heC4gICA6MzM0LjAwMDAgICBNYXguICAgOjE2ODQuMDAwMCAgIE1heC4gICA6MCAgICBcbiAoT3RoZXIpOiAgICAyNiAgIChPdGhlcik6ICAgIDEzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gaXNfZ3Vlc3RfbG9naW4gICAgICAgICBjb3VudCAgICAgICAgIHNydl9jb3VudCAgICAgIHNlcnJvcl9yYXRlICAgICBzcnZfZXJyb3JfcmF0ZSAgXG4gTWluLiAgIDowLjAwMDAwMCAgIE1pbi4gICA6ICAwLjAgICBNaW4uICAgOiAgMC4wICAgTWluLiAgIDowLjAwMDAgICBNaW4uICAgOjAuMDAwMCAgXG4gMXN0IFF1LjowLjAwMDAwMCAgIDFzdCBRdS46MTE3LjAgICAxc3QgUXUuOiAxMC4wICAgMXN0IFF1LjowLjAwMDAgICAxc3QgUXUuOjAuMDAwMCAgXG4gTWVkaWFuIDowLjAwMDAwMCAgIE1lZGlhbiA6NTEwLjAgICBNZWRpYW4gOjUxMC4wICAgTWVkaWFuIDowLjAwMDAgICBNZWRpYW4gOjAuMDAwMCAgXG4gTWVhbiAgIDowLjAwMTM4NyAgIE1lYW4gICA6MzMyLjMgICBNZWFuICAgOjI5Mi45ICAgTWVhbiAgIDowLjE3NjcgICBNZWFuICAgOjAuMTc2NiAgXG4gM3JkIFF1LjowLjAwMDAwMCAgIDNyZCBRdS46NTExLjAgICAzcmQgUXUuOjUxMS4wICAgM3JkIFF1LjowLjAwMDAgICAzcmQgUXUuOjAuMDAwMCAgXG4gTWF4LiAgIDoxLjAwMDAwMCAgIE1heC4gICA6NTExLjAgICBNYXguICAgOjUxMS4wICAgTWF4LiAgIDoxLjAwMDAgICBNYXguICAgOjEuMDAwMCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gIHJlcnJvcl9yYXRlICAgICAgc3J2X3JlcnJvcl9yYXRlICAgc2FtZV9zcnZfcmF0ZSAgICBkaWZmX3Nydl9yYXRlICAgICBzcnZfZGlmZl9ob3N0X3JhdGVcbiBNaW4uICAgOjAuMDAwMDAgICBNaW4uICAgOjAuMDAwMDAgICBNaW4uICAgOjAuMDAwMCAgIE1pbi4gICA6MC4wMDAwMCAgIE1pbi4gICA6MC4wMDAgICAgIFxuIDFzdCBRdS46MC4wMDAwMCAgIDFzdCBRdS46MC4wMDAwMCAgIDFzdCBRdS46MS4wMDAwICAgMXN0IFF1LjowLjAwMDAwICAgMXN0IFF1LjowLjAwMCAgICAgXG4gTWVkaWFuIDowLjAwMDAwICAgTWVkaWFuIDowLjAwMDAwICAgTWVkaWFuIDoxLjAwMDAgICBNZWRpYW4gOjAuMDAwMDAgICBNZWRpYW4gOjAuMDAwICAgICBcbiBNZWFuICAgOjAuMDU3NDMgICBNZWFuICAgOjAuMDU3NzIgICBNZWFuICAgOjAuNzkxNSAgIE1lYW4gICA6MC4wMjA5OCAgIE1lYW4gICA6MC4wMjkgICAgIFxuIDNyZCBRdS46MC4wMDAwMCAgIDNyZCBRdS46MC4wMDAwMCAgIDNyZCBRdS46MS4wMDAwICAgM3JkIFF1LjowLjAwMDAwICAgM3JkIFF1LjowLjAwMCAgICAgXG4gTWF4LiAgIDoxLjAwMDAwICAgTWF4LiAgIDoxLjAwMDAwICAgTWF4LiAgIDoxLjAwMDAgICBNYXguICAgOjEuMDAwMDAgICBNYXguICAgOjEuMDAwICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIGRzdF9ob3N0X2NvdW50ICBkc3RfaG9zdF9zcnZfY291bnQgZHN0X2hvc3Rfc3J2X3NhbWVfcmF0ZSBkc3RfaG9zdF9kaWZmX3Nydl9yYXRlXG4gTWluLiAgIDogIDAuMCAgIE1pbi4gICA6ICAwLjAgICAgICBNaW4uICAgOjAuMDAwMCAgICAgICAgIE1pbi4gICA6MC4wMDAwMCAgICAgICBcbiAxc3QgUXUuOjI1NS4wICAgMXN0IFF1LjogNDYuMCAgICAgIDFzdCBRdS46MC40MTAwICAgICAgICAgMXN0IFF1LjowLjAwMDAwICAgICAgIFxuIE1lZGlhbiA6MjU1LjAgICBNZWRpYW4gOjI1NS4wICAgICAgTWVkaWFuIDoxLjAwMDAgICAgICAgICBNZWRpYW4gOjAuMDAwMDAgICAgICAgXG4gTWVhbiAgIDoyMzIuNSAgIE1lYW4gICA6MTg4LjcgICAgICBNZWFuICAgOjAuNzUzOCAgICAgICAgIE1lYW4gICA6MC4wMzA5MSAgICAgICBcbiAzcmQgUXUuOjI1NS4wICAgM3JkIFF1LjoyNTUuMCAgICAgIDNyZCBRdS46MS4wMDAwICAgICAgICAgM3JkIFF1LjowLjA0MDAwICAgICAgIFxuIE1heC4gICA6MjU1LjAgICBNYXguICAgOjI1NS4wICAgICAgTWF4LiAgIDoxLjAwMDAgICAgICAgICBNYXguICAgOjEuMDAwMDAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBkc3RfaG9zdF9zYW1lX3NyY19wb3J0X3JhdGUgZHN0X2hvc3Rfc3J2X2RpZmZfaG9zdF9yYXRlIGRzdF9ob3N0X3NlcnJvcl9yYXRlIGRzdF9ob3N0X3Nydl9lcnJvcl9yYXRlXG4gTWluLiAgIDowLjAwMDAgICAgICAgICAgICAgIE1pbi4gICA6MC4wMDAwMDAgICAgICAgICAgICBNaW4uICAgOjAuMDAwMCAgICAgICBNaW4uICAgOjAuMDAwMCAgICAgICAgIFxuIDFzdCBRdS46MC4wMDAwICAgICAgICAgICAgICAxc3QgUXUuOjAuMDAwMDAwICAgICAgICAgICAgMXN0IFF1LjowLjAwMDAgICAgICAgMXN0IFF1LjowLjAwMDAgICAgICAgICBcbiBNZWRpYW4gOjEuMDAwMCAgICAgICAgICAgICAgTWVkaWFuIDowLjAwMDAwMCAgICAgICAgICAgIE1lZGlhbiA6MC4wMDAwICAgICAgIE1lZGlhbiA6MC4wMDAwICAgICAgICAgXG4gTWVhbiAgIDowLjYwMTkgICAgICAgICAgICAgIE1lYW4gICA6MC4wMDY2ODUgICAgICAgICAgICBNZWFuICAgOjAuMTc2OCAgICAgICBNZWFuICAgOjAuMTc2NCAgICAgICAgIFxuIDNyZCBRdS46MS4wMDAwICAgICAgICAgICAgICAzcmQgUXUuOjAuMDAwMDAwICAgICAgICAgICAgM3JkIFF1LjowLjAwMDAgICAgICAgM3JkIFF1LjowLjAwMDAgICAgICAgICBcbiBNYXguICAgOjEuMDAwMCAgICAgICAgICAgICAgTWF4LiAgIDoxLjAwMDAwMCAgICAgICAgICAgIE1heC4gICA6OS4wMDAwICAgICAgIE1heC4gICA6MS4wMDAwICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIGRzdF9ob3N0X3JlcnJvcl9yYXRlIGRzdF9ob3N0X3Nydl9yZXJyb3JfcmF0ZSAgICAgIGF0dGFjayAgICAgIFxuIE1pbi4gICA6MC4wMDAwMCAgICAgIE1pbi4gICA6MC4wMDAwMCAgICAgICAgICBzbXVyZi4gIDoyODA3OTAgIFxuIDFzdCBRdS46MC4wMDAwMCAgICAgIDFzdCBRdS46MC4wMDAwMCAgICAgICAgICBuZXB0dW5lLjoxMDcyMDEgIFxuIE1lZGlhbiA6MC4wMDAwMCAgICAgIE1lZGlhbiA6MC4wMDAwMCAgICAgICAgICBub3JtYWwuIDogOTcyNzcgIFxuIE1lYW4gICA6MC4wNTgxMiAgICAgIE1lYW4gICA6MC4wNTc0MSAgICAgICAgICBiYWNrLiAgIDogIDIyMDMgIFxuIDNyZCBRdS46MC4wMDAwMCAgICAgIDNyZCBRdS46MC4wMDAwMCAgICAgICAgICBzYXRhbi4gIDogIDE1ODkgIFxuIE1heC4gICA6MS4wMDAwMCAgICAgIE1heC4gICA6MS4wMDAwMCAgICAgICAgICBpcHN3ZWVwLjogIDEyNDcgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAoT3RoZXIpIDogIDM3MTQgIFxuIn0= -->
-<pre><code>    duration        protocol_type     service            flag          src_bytes        
- Min.   :    0.00   icmp:283602   ecr_i   :281400   SF     :378439   Min.   :        0  
- 1st Qu.:    0.00   tcp :190065   private :110894   S0     : 87008   1st Qu.:       45  
- Median :    0.00   udp : 20354   http    : 64292   REJ    : 26875   Median :      520  
- Mean   :   47.98                 smtp    :  9723   RSTR   :   903   Mean   :     3026  
- 3rd Qu.:    0.00                 other   :  7237   RSTO   :   579   3rd Qu.:     1032  
- Max.   :58329.00                 domain_u:  5863   SH     :   107   Max.   :693375640  
-                                  (Other) : 14612   (Other):   110                      
-   dst_bytes            land          wrong_fragment         urgent              hot          
- Min.   :      0   Min.   :0.00e+00   Min.   :0.000000   Min.   :0.00e+00   Min.   : 0.00000  
- 1st Qu.:      0   1st Qu.:0.00e+00   1st Qu.:0.000000   1st Qu.:0.00e+00   1st Qu.: 0.00000  
- Median :      0   Median :0.00e+00   Median :0.000000   Median :0.00e+00   Median : 0.00000  
- Mean   :    869   Mean   :4.45e-05   Mean   :0.006433   Mean   :1.42e-05   Mean   : 0.03452  
- 3rd Qu.:      0   3rd Qu.:0.00e+00   3rd Qu.:0.000000   3rd Qu.:0.00e+00   3rd Qu.: 0.00000  
- Max.   :5155468   Max.   :1.00e+00   Max.   :3.000000   Max.   :3.00e+00   Max.   :30.00000  
-                                                                                              
- num_failed_logins    logged_in      num_compromised      root_shell         su_attempted     
- Min.   :0.000000   Min.   :0.0000   Min.   :  0.0000   Min.   :0.0000000   Min.   :0.00e+00  
- 1st Qu.:0.000000   1st Qu.:0.0000   1st Qu.:  0.0000   1st Qu.:0.0000000   1st Qu.:0.00e+00  
- Median :0.000000   Median :0.0000   Median :  0.0000   Median :0.0000000   Median :0.00e+00  
- Mean   :0.000152   Mean   :0.1482   Mean   :  0.0102   Mean   :0.0001113   Mean   :3.64e-05  
- 3rd Qu.:0.000000   3rd Qu.:0.0000   3rd Qu.:  0.0000   3rd Qu.:0.0000000   3rd Qu.:0.00e+00  
- Max.   :5.000000   Max.   :1.0000   Max.   :884.0000   Max.   :1.0000000   Max.   :2.00e+00  
-                                                                                              
-    num_root      num_file_creations num_shells  num_access_files   num_outbound_cmds   is_host_login
- 0      :493435   0      :493755     0 :493969   Min.   :  0.0000   Min.   :   0.0000   Min.   :0    
- 1      :   233   1      :   207     1 :    48   1st Qu.:  0.0000   1st Qu.:   0.0000   1st Qu.:0    
- 9      :   167   2      :    36     2 :     3   Median :  0.0000   Median :   0.0000   Median :0    
- 6      :   126   4      :     7     SF:     1   Mean   :  0.0017   Mean   :   0.0034   Mean   :0    
- 2      :    22   16     :     2                 3rd Qu.:  0.0000   3rd Qu.:   0.0000   3rd Qu.:0    
- 5      :    12   10     :     1                 Max.   :334.0000   Max.   :1684.0000   Max.   :0    
- (Other):    26   (Other):    13                                                                     
- is_guest_login         count         srv_count      serror_rate     srv_error_rate  
- Min.   :0.000000   Min.   :  0.0   Min.   :  0.0   Min.   :0.0000   Min.   :0.0000  
- 1st Qu.:0.000000   1st Qu.:117.0   1st Qu.: 10.0   1st Qu.:0.0000   1st Qu.:0.0000  
- Median :0.000000   Median :510.0   Median :510.0   Median :0.0000   Median :0.0000  
- Mean   :0.001387   Mean   :332.3   Mean   :292.9   Mean   :0.1767   Mean   :0.1766  
- 3rd Qu.:0.000000   3rd Qu.:511.0   3rd Qu.:511.0   3rd Qu.:0.0000   3rd Qu.:0.0000  
- Max.   :1.000000   Max.   :511.0   Max.   :511.0   Max.   :1.0000   Max.   :1.0000  
-                                                                                     
-  rerror_rate      srv_rerror_rate   same_srv_rate    diff_srv_rate     srv_diff_host_rate
- Min.   :0.00000   Min.   :0.00000   Min.   :0.0000   Min.   :0.00000   Min.   :0.000     
- 1st Qu.:0.00000   1st Qu.:0.00000   1st Qu.:1.0000   1st Qu.:0.00000   1st Qu.:0.000     
- Median :0.00000   Median :0.00000   Median :1.0000   Median :0.00000   Median :0.000     
- Mean   :0.05743   Mean   :0.05772   Mean   :0.7915   Mean   :0.02098   Mean   :0.029     
- 3rd Qu.:0.00000   3rd Qu.:0.00000   3rd Qu.:1.0000   3rd Qu.:0.00000   3rd Qu.:0.000     
- Max.   :1.00000   Max.   :1.00000   Max.   :1.0000   Max.   :1.00000   Max.   :1.000     
-                                                                                          
- dst_host_count  dst_host_srv_count dst_host_srv_same_rate dst_host_diff_srv_rate
- Min.   :  0.0   Min.   :  0.0      Min.   :0.0000         Min.   :0.00000       
- 1st Qu.:255.0   1st Qu.: 46.0      1st Qu.:0.4100         1st Qu.:0.00000       
- Median :255.0   Median :255.0      Median :1.0000         Median :0.00000       
- Mean   :232.5   Mean   :188.7      Mean   :0.7538         Mean   :0.03091       
- 3rd Qu.:255.0   3rd Qu.:255.0      3rd Qu.:1.0000         3rd Qu.:0.04000       
- Max.   :255.0   Max.   :255.0      Max.   :1.0000         Max.   :1.00000       
-                                                                                 
- dst_host_same_src_port_rate dst_host_srv_diff_host_rate dst_host_serror_rate dst_host_srv_error_rate
- Min.   :0.0000              Min.   :0.000000            Min.   :0.0000       Min.   :0.0000         
- 1st Qu.:0.0000              1st Qu.:0.000000            1st Qu.:0.0000       1st Qu.:0.0000         
- Median :1.0000              Median :0.000000            Median :0.0000       Median :0.0000         
- Mean   :0.6019              Mean   :0.006685            Mean   :0.1768       Mean   :0.1764         
- 3rd Qu.:1.0000              3rd Qu.:0.000000            3rd Qu.:0.0000       3rd Qu.:0.0000         
- Max.   :1.0000              Max.   :1.000000            Max.   :9.0000       Max.   :1.0000         
-                                                                                                     
- dst_host_rerror_rate dst_host_srv_rerror_rate      attack      
- Min.   :0.00000      Min.   :0.00000          smurf.  :280790  
- 1st Qu.:0.00000      1st Qu.:0.00000          neptune.:107201  
- Median :0.00000      Median :0.00000          normal. : 97277  
- Mean   :0.05812      Mean   :0.05741          back.   :  2203  
- 3rd Qu.:0.00000      3rd Qu.:0.00000          satan.  :  1589  
- Max.   :1.00000      Max.   :1.00000          ipsweep.:  1247  
-                                               (Other) :  3714  </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
@@ -437,7 +286,7 @@ for (f in symbolic_feats){
 <p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFub21hbHkgRGV0ZWN0aW9uIE5vdGVib29rIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCmBgYHtyfQ0KI2NsZWFyIGVudmlyb25tZW50DQpybShsaXN0PWxzKCkpDQpnYygpDQpgYGANCg0KYGBge3J9DQojaW5zdGFsbCBwYWNrYWdlcw0KaW5zdGFsbC5wYWNrYWdlcygiY29ycnBsb3QiKQ0KaW5zdGFsbC5wYWNrYWdlcygiYWRlNCIpDQppbnN0YWxsLnBhY2thZ2VzKCJkYXRhLnRhYmxlIikNCnNvdXJjZSgiaHR0cDovL3d3dy5zdGhkYS5jb20vdXBsb2FkL3JxdWVyeV9jb3JtYXQuciIpDQpgYGANCg0KYGBge3J9DQpzZXR3ZCgiLi4iKQ0KDQojbG9hZCB0cmFpbiBkYXRhDQp0cmFpbiA8LSByZWFkLmNzdihmaWxlPSIuL2RhdGEva2RkY3VwLmRhdGFfMTBfcGVyY2VudC5jc3YiLCBoZWFkZXIgPSBUUlVFLHNlcD0iOyIsIHJvdy5uYW1lcz0gTlVMTCkNCg0KI2xvYWQgdGVzdCBkYXRhDQp0ZXN0IDwtIHJlYWQuY3N2KGZpbGU9Ii4vZGF0YS9rZGRjdXAuZGF0YV8xMF9wZXJjZW50LmNzdiIsIGhlYWRlciA9IFRSVUUsc2VwPSI7Iiwgcm93Lm5hbWVzPSBOVUxMKQ0KYGBgDQpgYGB7cn0NCiNleHRyYWN0IGZlYXR1cmVzIGFuZCBvdXRjb21lDQp4X3RyYWluID0gdHJhaW5bYygxOjQxKV0NCnlfdHJhaW4gPSB0cmFpbltjKDQyKV0NCg0KeF90ZXN0ID0gdGVzdFtjKDE6NDEpXQ0KeV90ZXN0ID0gdGVzdFtjKDQyKV0NCg0KYGBgDQoNCmBgYHtyfQ0KI29uZS1ob3QgZW5jb2RpbmcNCg0KbGlicmFyeShhZGU0KQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KDQojZW5jb2RlIHRoZSBzeW1ib2xpYyBmZWF0dXJlcw0Kc3ltYm9saWNfZmVhdHMgPSBjKCdwcm90b2NvbF90eXBlJywgJ3NlcnZpY2UnLCAnZmxhZycsICdsYW5kJywgJ2xvZ2dlZF9pbicsICdpc19ob3N0X2xvZ2luJywgJ2lzX2d1ZXN0X2xvZ2luJykNCg0KZm9yIChmIGluIHN5bWJvbGljX2ZlYXRzKXsNCiAgeF90cmFpbl9kdW1teSA9IGFjbS5kaXNqb25jdGlmKHhfdHJhaW5bZl0pDQogIHhfdHJhaW5bZl0gPSBOVUxMDQogIHhfdHJhaW4gPSBjYmluZCh4X3RyYWluLCB4X3RyYWluX2R1bW15KQ0KfQ0KDQoNCmBgYA0KDQoNCmBgYHtyfQ0KDQp5X3RyYWluID0gYWNtLmRpc2pvbmN0aWYoeV90cmFpbikNCmBgYA0KDQpgYGB7cn0NCmNvbG5hbWVzKHhfdHJhaW4pDQpgYGANCg0KYGBge3J9DQpzdW1tYXJ5KHRyYWluKQ0KYGBgDQoNCg0KVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gDQoNClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsK1NoaWZ0K0VudGVyKi4gDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsK0FsdCtJKi4NCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFub21hbHkgRGV0ZWN0aW9uIE5vdGVib29rIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCmBgYHtyfQ0KI2NsZWFyIGVudmlyb25tZW50DQpybShsaXN0PWxzKCkpDQpnYygpDQpgYGANCg0KYGBge3J9DQojaW5zdGFsbCBwYWNrYWdlcw0KaW5zdGFsbC5wYWNrYWdlcygiY29ycnBsb3QiKQ0KaW5zdGFsbC5wYWNrYWdlcygiYWRlNCIpDQppbnN0YWxsLnBhY2thZ2VzKCJkYXRhLnRhYmxlIikNCnNvdXJjZSgiaHR0cDovL3d3dy5zdGhkYS5jb20vdXBsb2FkL3JxdWVyeV9jb3JtYXQuciIpDQpgYGANCg0KYGBge3J9DQpzZXR3ZCgiLi4iKQ0KI2xvYWQgdHJhaW4gZGF0YQ0KdHJhaW4gPC0gcmVhZC5jc3YoZmlsZT0iLi9kYXRhL3RyYWluX2RhdGEuY3N2IiwgaGVhZGVyID0gVFJVRSxzZXA9IiwiLCByb3cubmFtZXM9IE5VTEwpDQp0cmFpblsnbnVtX291dGJvdW5kX2NtZHMnXSA9IE5VTEwNCiNsb2FkIHRlc3QgZGF0YQ0KdGVzdCA8LSByZWFkLmNzdihmaWxlPSIuL2RhdGEvdGVzdF9kYXRhLmNzdiIsIGhlYWRlciA9IFRSVUUsc2VwPSIsIiwgcm93Lm5hbWVzPSBOVUxMKQ0KdGVzdFsnbnVtX291dGJvdW5kX2NtZHMnXSA9IE5VTEwNCmBgYA0KYGBge3J9DQojZXh0cmFjdCBmZWF0dXJlcyBhbmQgb3V0Y29tZQ0KeF90cmFpbiA9IHRyYWluW2MoMTo0MCldDQp5X3RyYWluID0gdHJhaW5bYyg0MSldDQp4X3Rlc3QgPSB0ZXN0W2MoMTo0MCldDQp5X3Rlc3QgPSB0ZXN0W2MoNDEpXQ0KYGBgDQoNCmBgYHtyfQ0KI3ByaW5jaXBhbCBjb21wb25lbnQgYW5hbHlzeXMgKHdpdGhvdXQgY2F0ZWdvcmljYWwgZmVhdHVyZXMpDQpzeW1ib2xpY19mZWF0cyA8LSBjKCdwcm90b2NvbF90eXBlJywgJ3NlcnZpY2UnLCAnZmxhZycsICdsYW5kJywgJ2xvZ2dlZF9pbicsICdpc19ob3N0X2xvZ2luJywgJ2lzX2d1ZXN0X2xvZ2luJykNCnBjYV90cmFpbiA8LSB4X3RyYWluWyAsICEobmFtZXMoeF90cmFpbikgJWluJSBzeW1ib2xpY19mZWF0cyldDQpwY2FfdHJhaW4ucGNhIDwtIHByY29tcChwY2FfdHJhaW4sY2VudGVyID0gVFJVRSxzY2FsZSA9IFRSVUUpDQpzdW1tYXJ5KHBjYV90cmFpbi5wY2EpDQpgYGANCg0KDQoNCmBgYHtyfQ0KI25vcm1hbGl6aW5nIGZ1bmN0aW9uIGZvciB0cmFpbmluZyBhbmQgdGVzdGluZyBkYXRhc2V0IChub3RpY2UgdGhhdCBmb3IgYm90aCBkYXRhc2V0IGNoYXJhY3RlcmlzdGljcyBvZiB4X3RyYWluIGFyZSB1c2VkKQ0Kbm9ybWFsaXplIDwtIGZ1bmN0aW9uKHgpIHsNCiAgICBvbmVzID0gcmVwKDEsIG5yb3coeF90cmFpbikpDQogICAgeF9tZWFuID0gb25lcyAlKiUgdChjb2xNZWFucyh4X3RyYWluKSkNCiAgICB4X3N0ZCA9IG9uZXMgJSolIHQoYXBwbHkoeF90cmFpbiwgMiwgc2QpKQ0KICAgICh4IC0geF9tZWFuKSAvIHhfc3RkDQp9DQpgYGANCg0KYGBge3J9DQojb25lLWhvdCBlbmNvZGluZw0KbGlicmFyeShhZGU0KQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KI2VuY29kZSB0aGUgc3ltYm9saWMgZmVhdHVyZXMNCnN5bWJvbGljX2ZlYXRzID0gYygncHJvdG9jb2xfdHlwZScsICdzZXJ2aWNlJywgJ2ZsYWcnLCAnbGFuZCcsICdsb2dnZWRfaW4nLCAnaXNfaG9zdF9sb2dpbicsICdpc19ndWVzdF9sb2dpbicpDQp4X3RyYWluX3Jvd3MgPSBucm93KHhfdHJhaW4pDQojY29tYmluaW5nIHRyYWluZyBhbmQgdGVzdCBkYXRhc2V0IHNvIHRoYXQgdGhleSBoYXZlIHNhbWUgY29sdW1uIG5hbWVzIGFmdGVyIG9uZS1ob3QgZW5jb2RpbmcNCnhfY29tYmluZWQgPSByYmluZCh4X3RyYWluLCB4X3Rlc3QpDQp4X2VuY29kZWQgPC0gZGF0YS5mcmFtZShyb3cubmFtZXM9MTpucm93KHhfY29tYmluZWQpKQ0KZm9yIChmIGluIHN5bWJvbGljX2ZlYXRzKXsNCiAgeF9kdW1teSA9IGFjbS5kaXNqb25jdGlmKHhfY29tYmluZWRbZl0pDQogIHhfY29tYmluZWRbZl0gPSBOVUxMDQogIHhfdHJhaW5bZl0gPSBOVUxMDQogIA0KICAjc3RvcmUgY2F0ZWdvcmljYWwgZmVhdHVyZXMNCiAgeF9lbmNvZGVkID0gY2JpbmQoeF9lbmNvZGVkLCB4X2R1bW15KQ0KfQ0KI25vcm1hbGl6ZSB0aGUgY29tYmluZWQgZGF0YXNldCB3aXRob3V0IGNhdGVnb3JpY2FsIGZlYXR1cmVzDQpub3JtYWxpemVkIDwtIG5vcm1hbGl6ZSh4X2NvbWJpbmVkKQ0KI2NvbWJpbmUgbm9ybWFsaXplZCBhbmQgZW5jb2RlZCBjYXRlZ29yaWNhbCBmZWF0dXJlcw0KeF9jb21iaW5lZCA9IGNiaW5kKG5vcm1hbGl6ZWQsIHhfZW5jb2RlZCkNCiNzcGxpdCB0cmFpbiBhbmQgdGVzdCBkYXRhc2V0DQp4X3RyYWluID0geF9jb21iaW5lZFsxOnhfdHJhaW5fcm93cyxdDQp4X3Rlc3QgPSB4X2NvbWJpbmVkWyh4X3RyYWluX3Jvd3MrMSk6bnJvdyh4X2NvbWJpbmVkKSxdDQpgYGANCg0KYGBge3J9DQpzdW1tYXJ5KG5vcm1hbGl6ZWQpDQpgYGANClRoaXMgaXMgYW4gW1IgTWFya2Rvd25dKGh0dHA6Ly9ybWFya2Rvd24ucnN0dWRpby5jb20pIE5vdGVib29rLiBXaGVuIHlvdSBleGVjdXRlIGNvZGUgd2l0aGluIHRoZSBub3RlYm9vaywgdGhlIHJlc3VsdHMgYXBwZWFyIGJlbmVhdGggdGhlIGNvZGUuIA0KDQpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ3RybCtTaGlmdCtFbnRlciouIA0KDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouDQoNCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ3RybCtTaGlmdCtLKiB0byBwcmV2aWV3IHRoZSBIVE1MIGZpbGUpLg0KDQpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuDQo=</div>
 
 
 

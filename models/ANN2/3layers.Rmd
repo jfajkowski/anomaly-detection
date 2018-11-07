@@ -8,13 +8,22 @@ output: html_notebook
 rm(list=ls())
 gc()
 ```
+ANN2 is a library used to congure autoencoder. Using ANN2 it is possible to conduct a
+training of general classification and regression neural networks using gradient descent. ANN2 contains Special features include a function for training replicator neural networks and a function for training autoencoders. Multiple activation and cost functions (including Huber and pseudo-Huber) are supported, as well as L1 and L2 regularization, momentum, early stopping and the possibility to specify a learning rate schedule. The package contains a vectorized gradient descent implementation which facilitates faster training through batch learning.
+```{r}
+#NN and autoencoder library
+install.packages("ANN2")
+library(ANN2)
+#config file with data used in autoencoder configuration
+source("3layers_config.R")
+```
 
 
 Creating autoencoder model using autoencoder() function from ANN2 library.
 ```{r}
 if(huberCutOff){
   autoencoder <- autoencoder(
-                        X = x_train_matrix, 
+                        X = x_train, 
                         hiddenLayers = c(firstLayerUnits, SecodnLayerUnits, ThirdLayerUnits),
                         lossFunction = lossFunction,
                         dHuber = huberCutOff,
@@ -30,7 +39,7 @@ if(huberCutOff){
                         )
 }else{
     autoencoder <- autoencoder(
-                        X = x_train_matrix, 
+                        X = x_train, 
                         hiddenLayers = c(firstLayerUnits, SecodnLayerUnits, ThirdLayerUnits),
                         lossFunction = lossFunction,
                         maxEpochs = maxEpochs,
@@ -48,8 +57,6 @@ if(huberCutOff){
 
 ```{r}
 plot(autoencoder)
-
 rX <- reconstruct(autoencoder, x_train)
-
 #difference between x_train and rX gives us anomalies in x_train dataset.
 ```
