@@ -1,0 +1,44 @@
+---
+title: "Anomaly detection configuration"
+output: html_notebook
+---
+Here are all libraries and dependecies used in Anomaly Detection project.
+
+
+---
+Google cloud configuration. Setting up connection with google cloud, registering to project 'anomaly-detection' and installing library.
+TODO: dodaj reszte konfiguracji i notebook z deployem.
+
+```{r}
+install.packages("cloudml")
+library(cloudml)
+gcloud_install()
+```
+---
+
+---
+ANN2 is a library used to congure autoencoder. Using ANN2 it is possible to conduct a
+training of general classification and regression neural networks using gradient descent. ANN2 contains Special features include a function for training replicator neural networks and a function for training autoencoders. Multiple activation and cost functions (including Huber and pseudo-Huber) are supported, as well as L1 and L2 regularization, momentum, early stopping and the possibility to specify a learning rate schedule. The package contains a vectorized gradient descent implementation which facilitates faster training through batch learning.
+```{r}
+#NN and autoencoder library
+install.packages("ANN2")
+
+library(ANN2)
+
+#config file with data used in autoencoder configuration
+source("3layers_config.R")
+
+```
+---
+
+
+Libraries and tools used to create model with Keras that is based on Tensorflow library.
+```{r}
+devtools::install_github("rstudio/reticulate", force = TRUE)
+
+#prepare data
+
+library('keras')
+library('tensorflow')
+
+```

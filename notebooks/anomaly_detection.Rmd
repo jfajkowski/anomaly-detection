@@ -20,10 +20,10 @@ source("http://www.sthda.com/upload/rquery_cormat.r")
 setwd("..")
 
 #load train data
-train <- read.csv(file="./data/kddcup.csv", header = TRUE,sep=",", row.names= NULL)
+train <- read.csv(file="./data/kddcup.data_10_percent.csv", header = TRUE,sep=";", row.names= NULL)
 
 #load test data
-test <- read.csv(file="./data/test_data.csv", header = TRUE,sep=",", row.names= NULL)
+test <- read.csv(file="./data/kddcup.data_10_percent.csv", header = TRUE,sep=";", row.names= NULL)
 ```
 ```{r}
 #extract features and outcome
@@ -50,6 +50,13 @@ for (f in symbolic_feats){
   x_train = cbind(x_train, x_train_dummy)
 }
 
+
+```
+
+
+```{r}
+
+y_train = acm.disjonctif(y_train)
 ```
 
 ```{r}

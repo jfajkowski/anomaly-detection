@@ -8,17 +8,7 @@ rm(list=ls())
 gc()
 ```
 
-```{r}
-devtools::install_github("rstudio/reticulate", force = TRUE)
-```
 
-```{r}
-#prepare data
-
-library('keras')
-library('tensorflow')
-
-```
 
 ```{r}
 source("3layers_config.R")
@@ -59,9 +49,6 @@ checkpoint <- callback_model_checkpoint(
 )
 
 early_stopping <- callback_early_stopping(patience = 5)
-```
-```{r}
-x_train_matrix[0:42]
 ```
 
 ```{r}
