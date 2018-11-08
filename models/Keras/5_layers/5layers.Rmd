@@ -1,0 +1,63 @@
+---
+title: "5 layers autoencoder model - Keras library"
+output: html_notebook
+---
+
+```{r}
+source("5layers_config.R")
+```
+
+```{r}
+#transform data to matrixes
+
+x_train_matrix <- x_train %>% as.matrix()
+
+x_test_matrix <- x_test %>% as.matrix()
+```
+
+
+Model created with Keras library functions. The net contains 3 dense hidden leayers.
+```{r}
+model <- keras_model_sequential()
+model %>%
+  layer_dense(units = FLAGS_FIVE$first_units, activation = firstLayerActivation, input_shape = ncol(x_train_matrix)) %>%
+  layer_dense(units = FLAGS_FIVE$second_units, activation = secondLayerActivation) %>%
+  layer_dense(units = FLAGS_FIVE$third_units, activation = thirdLayerActivation) %>%
+  layer_dense(units = FLAGS_FIVE$fourth_units, activation = fourthLayerActivation) %>%
+  layer_dense(units = FLAGS_FIVE$first_units, activation = fifthLayerActivation) %>%
+  layer_dense(units = ncol(x_train_matrix))
+
+summary(model)
+
+model %>% compile(
+  loss = lossFunction,
+  optimizer = optimizer_adam(lr = learningRate),
+  metrics = 'accuracy'
+)
+
+checkpoint <- callback_model_checkpoint(
+  filepath = "5layers.hdf5", 
+  save_best_only = TRUE, 
+  period = 1,
+  verbose = 1
+)
+
+early_stopping <- callback_early_stopping(patience = 5)
+```
+Fitting model due to configuration described in 5layers_conf.R file.
+```{r}
+#fidding model with only normal requests.
+model %>% fit(
+  x = x_train_matrix,
+  y = x_train_matrix, 
+  epochs = maxEpochs, 
+  batch_size = batchSize,
+  validation_split = 0.1
+  )
+#   validation_data = list(x_test, y_test)
+#  callbacks = list(checkpoint, early_stopping)
+```
+
+
+
+

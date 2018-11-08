@@ -18,3 +18,9 @@ SecondLayerUnits <- 15
 #The first hidden layer config
 thirdLayerActivation = firstLayerActivation
 ThirdLayerUnits <- firstLayerUnits
+
+FLAGS_THREE <-flags(
+  flag_integer("first_units", 30),
+  flag_integer("second_units", 15),
+  flag_integer("third_units", 30)
+)

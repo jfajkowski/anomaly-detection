@@ -5,16 +5,7 @@ output: html_notebook
 Here are all libraries and dependecies used in Anomaly Detection project.
 
 
----
-Google cloud configuration. Setting up connection with google cloud, registering to project 'anomaly-detection' and installing library.
-TODO: dodaj reszte konfiguracji i notebook z deployem.
 
-```{r}
-install.packages("cloudml")
-library(cloudml)
-gcloud_install()
-```
----
 
 ---
 ANN2 is a library used to congure autoencoder. Using ANN2 it is possible to conduct a
@@ -30,6 +21,18 @@ source("3layers_config.R")
 
 ```
 ---
+
+
+Google cloud configuration. Setting up connection with google cloud, registering to project 'anomaly-detection' and installing library.
+TODO: dodaj reszte konfiguracji i notebook z deployem.
+
+```{r}
+if (!"cloudml" %in% installed.packages()){
+  install.packages("cloudml")
+  gcloud_install()
+}
+library(cloudml)
+```
 
 
 Libraries and tools used to create model with Keras that is based on Tensorflow library.
