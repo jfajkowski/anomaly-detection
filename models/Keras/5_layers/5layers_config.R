@@ -32,5 +32,12 @@ FLAGS_FIVE <-flags(
   flag_integer("second_units", 26),
   flag_integer("third_units", 12),
   flag_integer("fourth_units", 26),
-  flag_integer("fifth_units", 41)
+  flag_integer("fifth_units", 41),
+  
+  flag_integer("batch_size", 256),
+  flag_numeric("learning_rate", 1e-06),
+  flag_integer("max_epoch", 100),
+  
+  flag_string("data_dir", "data")
+  
 )

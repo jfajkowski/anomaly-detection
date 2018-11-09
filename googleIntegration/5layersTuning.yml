@@ -4,8 +4,8 @@ trainingInput:
   hyperparameters:
     goal: MAXIMIZE
     hyperparameterMetricTag: acc
-    maxTrials: 10
-    maxParallelTrials: 2
+    maxTrials: 1
+    maxParallelTrials: 1
     params:
       - parameterName: third_units
         type: INTEGER
@@ -16,4 +16,4 @@ trainingInput:
         type: INTEGER
         minValue: 64
         maxValue: 64
-        discreteValues: UNIT_LINEAR_SCALE
+        scaleType: UNIT_LINEAR_SCALE
