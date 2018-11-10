@@ -1,0 +1,39 @@
+---
+title: "Categories distribution analysis"
+output: html_notebook
+---
+
+First step is to load the training data and labels that are used to mark anomalies.
+
+```{r}
+library(dplyr)
+library(ggplot)
+library(purrr)
+data <- read.csv(file="../data/train_data.csv", header=TRUE, sep=",", row.names=NULL)
+data_frame <- data.frame(data)
+getType <- function(x) {
+  if (x['category'] == 'normal') {
+    return('normal');
+  } else if (x['category'] == 'smurf' || x['category'] == 'neptune') {
+    return('ddos')
+  } else {
+    return('anomaly')
+  }
+}
+data_frame$type <- apply(data_frame, 1, getType)
+```
+
+Then we extract categories that each row is labeled with and aggregate them.
+
+```{r}
+
+label_column_names <- setdiff(names(data_frame), names(which(sapply(data_frame ,is.numeric))))
+for (column_name in label_column_names) {
+  print(data_frame %>% 
+    group_by_(column_name, 'type') %>% 
+    summarise(count = n()) %>%
+    ggplot(aes_string(x = column_name, y = 'count', fill = 'type')) + geom_bar(stat="identity") + theme(axis.text.x=element_text(angle=90)) + scale_y_log10())
+}
+```
+
+The number of anomalies exceeds normal activity. This is caused by volume of DoS type attacks - the kind that produces enormous number of packets. It could be problematic to distinguish them from normal activity using autoencoders that only have knowledge about current moment. If that's the case - the proposed solution would be using recursive networks and introducing some units with memory into network structure (like LSTM's or GRU's). 
