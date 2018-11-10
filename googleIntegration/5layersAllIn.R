@@ -1,4 +1,12 @@
 ################################ CONFIGURATION #####################################
+#install packages
+
+library(keras)
+library(cloudml)
+library('tensorflow')
+
+source("http://www.sthda.com/upload/rquery_cormat.r")
+
 
 #general
 batchSize <- 256
@@ -7,31 +15,26 @@ maxEpochs <- 100
 lossFunction <- "mean_squared_error"
 
 
-#The first hidden layer config
-firstLayerActivation = "tanh"
+#The first hidden layer config - input layer
 
 #The second hidden layer config
-secondLayerActivation = firstLayerActivation
+secondLayerActivation = "tanh"
 
 #The third hidden layer config
-thirdLayerActivation = firstLayerActivation
+thirdLayerActivation = secondLayerActivation
 
 #The fourth hidden layer config
-fourthLayerActivation = firstLayerActivation
+fourthLayerActivation = secondLayerActivation
 
-#The fith layer config
-fifthLayerActivation = firstLayerActivation
 
-FLAGS <-flags(
-  flag_integer("first_units", 41),
+FLAGS <- flags(
   flag_integer("second_units", 26),
   flag_integer("third_units", 12),
   flag_integer("fourth_units", 26),
-  flag_integer("fifth_units", 41),
-  
+
   flag_integer("batch_size", 256),
   flag_numeric("learning_rate", 1e-06),
-  flag_integer("max_epoch", 100),
+  flag_integer("max_epoch", 10),
   
   flag_string("data_dir", "gs://anomaly_detection_data")
   
@@ -42,18 +45,17 @@ FLAGS <-flags(
 
 
 ################################## DATA PREPATARION ################################
-#install packages
-install.packages("corrplot")
-install.packages("ade4")
-install.packages("data.table")
-source("http://www.sthda.com/upload/rquery_cormat.r")
+
+data_dir <- gs_data_dir_local(FLAGS$data_dir)
 
 #setwd("..")
 #load train data
 #train <- read.csv(file="./data/train_data.csv", header = TRUE,sep=",", row.names= NULL)
-data_dir <- gs_data_dir_local(FLAGS$data_dir)
-train <- read.csv(file=data_dir, header = TRUE,sep=",", row.names= NULL)
+
+####### watch out! the separator type was changed! ########
+train <- read.csv(file=file.path(data_dir, "kddcup.data_10_percent.csv"), header = TRUE,sep=";", row.names= NULL)
 train['num_outbound_cmds'] = NULL
+
 #load test data
 #test <- read.csv(file="./data/test_data.csv", header = TRUE,sep=",", row.names= NULL)
 #test['num_outbound_cmds'] = NULL
@@ -116,11 +118,9 @@ x_test_matrix <- x_test %>% as.matrix()
 
 model <- keras_model_sequential()
 model %>%
-  layer_dense(units = FLAGS$first_units, activation = firstLayerActivation, input_shape = ncol(x_train_matrix)) %>%
-  layer_dense(units = FLAGS$second_units, activation = secondLayerActivation) %>%
+  layer_dense(units = FLAGS$second_units, activation = secondLayerActivation, input_shape = ncol(x_train_matrix)) %>%
   layer_dense(units = FLAGS$third_units, activation = thirdLayerActivation) %>%
   layer_dense(units = FLAGS$fourth_units, activation = fourthLayerActivation) %>%
-  layer_dense(units = FLAGS$first_units, activation = fifthLayerActivation) %>%
   layer_dense(units = ncol(x_train_matrix))
 
 summary(model)

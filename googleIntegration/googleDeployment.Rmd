@@ -7,19 +7,21 @@ This script deploys selected file to google ML cloud.
 TODO: create the list of files to train with their config yml files.
 
 ```{r}
-googleJob5layer <- cloudml_train("5layersAllIn.R", config = "5layersTuning.yml", flags = "5layerFlags.yml")
+googleJob5layer <- cloudml_train("5layersAllIn.R", config = "5layersTuning.yml")
 #googleJob3layer <- cloudml_train("3layersAllIn.R", config = "3layersTuning.yml", flags = "FLAGS_THREE"3layerFlags.yml")
+#googleJobTest <- cloudml_train("test.R", config = "test.yml")
+
 ```
 
 Reading job status from google. Can be run during tranning to observe learning process.
 ```{r}
-job_status(googleJob)
+job_status(googleJobTest)
 ```
 
 Collecting job result.
 ```{r}
 
-job_collect(googleJob)
+job_collect(googleJobTest)
 ```
 
 

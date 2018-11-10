@@ -32,7 +32,6 @@ if (!"cloudml" %in% installed.packages()){
   gcloud_install()
 }
 library(cloudml)
-library(tfdatasets)
 ```
 
 

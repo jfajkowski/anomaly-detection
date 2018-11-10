@@ -7,13 +7,29 @@ trainingInput:
     maxTrials: 1
     maxParallelTrials: 1
     params:
+      - parameterName: second_units
+        type: INTEGER
+        minValue: 26
+        maxValue: 26
+        scaleType: UNIT_LINEAR_SCALE
       - parameterName: third_units
         type: INTEGER
-        minValue: 10
-        maxValue: 10
+        minValue: 12
+        maxValue: 12
+        scaleType: UNIT_LINEAR_SCALE
+      - parameterName: fourth_units
+        type: INTEGER
+        minValue: 26
+        maxValue: 26
         scaleType: UNIT_LINEAR_SCALE
       - parameterName: batch_size
         type: INTEGER
-        minValue: 64
-        maxValue: 64
+        minValue: 256
+        maxValue: 256
         scaleType: UNIT_LINEAR_SCALE
+      - parameterName: learning_rate
+        type: DOUBLE
+        minValue: 0.000001
+        maxValue: 0.000001
+        scaleType: UNIT_LINEAR_SCALE
+        
