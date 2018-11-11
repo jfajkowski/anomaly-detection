@@ -1,0 +1,88 @@
+---
+title: "How to evaluate autoencoder models?"
+output: html_notebook
+---
+
+First we will generate toy dataset for evaluation purposes. Just let's create some multivariate rows with uniform distribution that will represent our normal data. Then we will put there some anomalies by using generator with wider uniform distribution. We will use 0 as label for normal representative and 1 as label for an anomaly.
+
+```{r}
+normal_rows <- 100000
+anomaly_rows <- 1000
+columns <- 128
+
+x <- matrix(0L, nrow = normal_rows + anomaly_rows, ncol = columns)
+for (c in 1:columns) {
+  x[,c] <- append((runif(normal_rows) - 0.5) * 2 * 2, (runif(anomaly_rows) - 0.5) * 2 * 2.5)
+}
+```
+
+We can choose either to treat our inputs as continous values (and normalize them), or we can discretize values and encode as categorical.
+
+```{r}
+# x <- apply(x, c(1, 2), as.integer)
+# tmp <- x
+# x <- matrix(nrow = nrow(x))
+# for (c in 1:columns) {
+#  x <- cbind(x, to_categorical(tmp[,c] + abs(min(tmp[,c]))))
+# }
+# x <- x[,-1]
+x <- scale(x)
+y <- append(rep.int(0, normal_rows), rep.int(1, anomaly_rows))
+
+data = data.frame(x, y)
+```
+
+After that we can split our data to train and test datasets. The typical ratio that is used for this purpose is 0.8.
+
+```{r}
+set.seed(42) 
+sample <- sample.split(data, SplitRatio = .8)
+train <- subset(data, sample == TRUE)
+test  <- subset(data, sample == FALSE)
+x_train <- as.matrix(train[1:ncol(x)])
+x_test <- as.matrix(test[1:ncol(x)])
+y_train <- as.matrix(train$y)
+y_test <- as.matrix(test$y)
+```
+
+Now that we prepared data we can create an autoencoder model. In this case it will consist of three layers that are connected sequentially.
+
+```{r}
+model <- keras_model_sequential()
+model %>%
+  layer_dense(units = 16, activation = 'relu', input_shape = ncol(x_train)) %>%
+  layer_dense(units = ncol(x_train), activation = 'sigmoid')
+
+summary(model)
+
+model %>% compile(
+  loss = "mean_squared_error",
+  optimizer = optimizer_adam(lr = 1e-03),
+  metrics = "mse")
+
+model %>% fit(
+  x = x_train,
+  y = x_train, 
+  epochs = 30, 
+  batch_size = 4096,
+  validation_split = 0.1)
+```
+
+Given the significantly higher number of normal representatives our model should have trained to recreate normal input values with less error than anomaly input values. We can check this by comparing density plots of chosen error metric between normal and anomalies. The error metric I used is MSE.
+
+```{r}
+x_predict <- model %>% predict(x_test)
+errors <- apply(abs(x_test - x_predict), 1, function(x) sum(x) / length(x))
+error_df <- data.frame(error = errors, anomaly = y_test == 1)
+ggplot(error_df, aes(x = error, fill = anomaly)) + geom_density(alpha = 0.5)
+```
+
+We have to chose a classification line between normal and anomaly. In this case it we can't get rid of false positives and true negatives, because reconstruction error densities are joint.
+
+```{r}
+y_test <- y_test == 1
+y_predict <- as.matrix(errors > 0.95)
+table(y_test, y_predict)
+mean(y_test == y_predict)
+```
+

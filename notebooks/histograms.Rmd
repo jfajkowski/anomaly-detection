@@ -6,9 +6,6 @@ output: html_notebook
 First step is to load the training data and labels that are used to mark anomalies.
 
 ```{r}
-library(dplyr)
-library(ggplot)
-library(purrr)
 data <- read.csv(file="../data/train_data.csv", header=TRUE, sep=",", row.names=NULL)
 data_frame <- data.frame(data)
 getType <- function(x) {
@@ -36,4 +33,4 @@ for (column_name in label_column_names) {
 }
 ```
 
-The number of anomalies exceeds normal activity. This is caused by volume of DoS type attacks - the kind that produces enormous number of packets. It could be problematic to distinguish them from normal activity using autoencoders that only have knowledge about current moment. If that's the case - the proposed solution would be using recursive networks and introducing some units with memory into network structure (like LSTM's or GRU's). 
+The number of anomalies exceeds normal activity. This is caused by volume of DoS type attacks - the kind that produces enormous number of packets. It could be problematic to distinguish them from normal activity using autoencoders that only have knowledge about current moment. If that's the case - the proposed solution would be using recursive networks and introducing some units with memory into network structure (like LSTM's or GRU's). We could also train model on data with filtered DDoS packets.

@@ -45,3 +45,12 @@ library('keras')
 library('tensorflow')
 
 ```
+
+Following libraries were used for more robust plotting and data analysis.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(purrr)
+library(caTools)
+```

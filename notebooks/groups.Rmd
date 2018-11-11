@@ -6,9 +6,6 @@ output: html_notebook
 First step is to load the training data and labels that are used to mark anomalies.
 
 ```{r}
-library(dplyr)
-library(ggplot)
-library(purrr)
 data <- read.csv(file="../data/train_data.csv", header=TRUE, sep=",", row.names=NULL)
 ```
 
