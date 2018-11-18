@@ -39,3 +39,4 @@ rsconnect/
 data/*
 .Rproj.user
 *.Rproj
+*.hdf5
