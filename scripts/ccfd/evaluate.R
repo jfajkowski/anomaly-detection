@@ -1,3 +1,8 @@
+library(ggplot2)
+
+source("./scripts/common/normalization.R")
+source("./scripts/common/metrics.R")
+
 test <- read.csv(file = "./data/ccfd/processed/test.csv", header = TRUE, sep = ",", row.names = NULL)
 model <- load_model_hdf5("./models/ccfd/20181117T1407.hdf5")
 
@@ -14,3 +19,4 @@ ggplot(roc_df, aes(fpr, tpr)) +
   geom_line(color=rgb(0, 0, 1, alpha = 0.3)) +
   coord_fixed() +
   labs(title = sprintf("ROC")) + xlab("FPR") + ylab("TPR")
+
