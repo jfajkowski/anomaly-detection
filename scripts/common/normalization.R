@@ -1,3 +1,3 @@
-normalize_zero_one <- function(x) {
+normalize_min_max <- function(x) {
   return ((x - min(x)) / (max(x) - min(x)))
 }

@@ -11,7 +11,7 @@ y_test <- as.matrix(test[31])
 
 X_predict <- model %>% predict(X_test)
 
-y_predict <- normalize_zero_one(apply(abs(X_test - X_predict), 1, function(x) sum(x) / length(x)))
+y_predict <- normalize_min_max(apply(abs(X_test - X_predict), 1, function(x) sum(x) / length(x)))
 
 roc_df <- roc(y_test, y_predict)
 
