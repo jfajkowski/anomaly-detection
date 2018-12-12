@@ -2,14 +2,14 @@ library(keras)
 library(cloudml)
 
 FLAGS <- flags(
-  flag_integer("epochs", 100),
+  flag_integer("epochs", 30),
   flag_integer("second_layer_units", 10),
   flag_string("encoder_activation", "relu"),
   flag_string("decoder_activation", "sigmoid")
 )
 
-# data_dir <- "./data/ccfd/scaled"
-data_dir <- gs_data_dir_local("gs://anomaly_detection_data/ccfd/scaled")
+data_dir <- "./data/ccfd/scaled"
+# data_dir <- gs_data_dir_local("gs://anomaly_detection_data/ccfd/scaled")
 train <- read.csv(file = file.path(data_dir, "train.csv"), header = TRUE, sep = ",", row.names = NULL)
 
 X_train <- as.matrix(train[1:30])
@@ -29,3 +29,5 @@ model %>% fit(
   y = X_train, 
   epochs = FLAGS$epochs,
   batch_size = 4096)
+
+save_model_hdf5(model, "./models/ccfd/3_layers/model.hdf5")

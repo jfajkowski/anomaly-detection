@@ -11,5 +11,5 @@ sample <- sample.split(data, split_ratio)
 train <- subset(data, sample == TRUE)
 test  <- subset(data, sample == FALSE)
 
-write.csv(train, file = "./data/ccfd/processed/train.csv", row.names = FALSE)
-write.csv(test, file = "./data/ccfd/processed/test.csv", row.names = FALSE)
+write.csv(train, file = "./data/ccfd/scaled/train.csv", row.names = FALSE)
+write.csv(test, file = "./data/ccfd/scaled/test.csv", row.names = FALSE)
