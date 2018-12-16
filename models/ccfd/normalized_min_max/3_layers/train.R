@@ -8,8 +8,8 @@ FLAGS <- flags(
   flag_string("decoder_activation", "sigmoid")
 )
 
-# data_dir <- "./data/ccfd/scaled"
-data_dir <- gs_data_dir_local("gs://anomaly_detection_data/ccfd/scaled")
+data_dir <- "./data/ccfd/normalized_min_max"
+#data_dir <- gs_data_dir_local("gs://anomaly_detection_data/ccfd/scaled")
 train <- read.csv(file = file.path(data_dir, "train.csv"), header = TRUE, sep = ",", row.names = NULL)
 
 X_train <- as.matrix(train[1:30])
@@ -29,3 +29,5 @@ model %>% fit(
   y = X_train, 
   epochs = FLAGS$epochs,
   batch_size = 4096)
+
+save_model_hdf5(model, "./models/ccfd/normalized_min_max/20181117T1407.hdf5")
