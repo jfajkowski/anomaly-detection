@@ -1,0 +1,8 @@
+batch_size: 4096
+epochs: 10
+second_layer_units: 15
+third_layer_units: 10
+fourth_layer_units: 15
+encoder_activation: "relu"
+decoder_activation: "sigmoid"
+data_dir: "./data/ccfd/discretized"

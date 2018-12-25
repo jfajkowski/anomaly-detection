@@ -7,21 +7,24 @@ set.seed(42)
 
 data <- read.csv(file = "./data/ccfd/raw/creditcard.csv", header = TRUE, sep = ",", row.names = NULL)
 
+# Drop unnecessary Time column
+data <- subset(data, select = -c(Time))
+
 n <- 4
 
-data[1:30] <- apply(data[1:30], 2, function(x) bucketize(x,n))
+data[1:29] <- apply(data[1:29], 2, function(x) bucketize(x,n))
 
 #filter NA's
 data <- na.omit(data)
 
 #concatenate encoded columns
-concatenated <- apply(data[1:30], 1, paste, collapse="")
+concatenated <- apply(data[1:29], 1, paste, collapse="")
 
 #split to get list of binary values
 splited <- strsplit(concatenated, split='')
 
 #create data.frame
-discretized <- cbind(do.call(rbind, splited), data[31])
+discretized <- cbind(do.call(rbind, splited), data[30])
 
 split_ratio <- 0.8
 sample <- sample.split(discretized, split_ratio)

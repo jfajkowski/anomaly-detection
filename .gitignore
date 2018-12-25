@@ -40,3 +40,4 @@ rsconnect/
 .Rproj.user
 *.Rproj
 *.hdf5
+.idea

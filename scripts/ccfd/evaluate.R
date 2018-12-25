@@ -9,8 +9,8 @@ source("./scripts/common/normalization.R")
 test <- read.csv(file = "./data/ccfd/scaled/test.csv", header = TRUE, sep = ",", row.names = NULL)
 model <- load_model_hdf5("./models/ccfd/3_layers/model.hdf5")
 
-X_test <- as.matrix(test[1:30])
-y_test <- as.matrix(test[31])
+X_test <- as.matrix(subset(test, select = -c(Class)))
+y_test <- as.matrix(subset(test, select = c(Class)))
 
 X_predict <- model %>% predict(X_test)
 y_predict <- as.matrix(normalize_min_max(apply(abs(X_test - X_predict), 1, function(x) sum(x) / length(x))))
@@ -22,7 +22,7 @@ auc(roc_curve)
 
 # Find optimal cutoff point
 cutoff <- coords(roc_curve, "best", "threshold")
-cat("Optimal cutoff point:", cutoff["threshold"])
+cat("Optimal cutoff point:", cutoff["threshold"], "\n")
 confusionMatrix(table(y_predict > cutoff["threshold"], y_test == 1))
 
 # Plot ROC data
