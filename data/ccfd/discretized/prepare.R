@@ -10,26 +10,33 @@ data <- read.csv(file = "./data/ccfd/raw/creditcard.csv", header = TRUE, sep = "
 # Drop unnecessary Time column
 data <- subset(data, select = -c(Time))
 
-n <- 4
+split_ratio <- 0.8
+sample <- sample.split(data, split_ratio)
+train_data <- subset(data, sample == TRUE)
+test_data  <- subset(data, sample == FALSE)
 
-data[1:29] <- apply(data[1:29], 2, function(x) bucketize(x,n))
+n <- 256
+
+train_data[1:29] <- apply(train_data[1:29], 2, function(x) bucketize(x,n))
+test_data[1:29] <- apply(test_data[1:29], 2, function(x) bucketize(x,n))
+
 
 #filter NA's
-data <- na.omit(data)
+train_data <- na.omit(train_data)
+test_data <- na.omit(test_data)
 
 #concatenate encoded columns
-concatenated <- apply(data[1:29], 1, paste, collapse="")
+train_concatenated <- apply(train_data[1:29], 1, paste, collapse="")
+test_concatenated <- apply(test_data[1:29], 1, paste, collapse="")
 
 #split to get list of binary values
-splited <- strsplit(concatenated, split='')
+train_splited <- strsplit(train_concatenated, split='')
+test_splited <- strsplit(test_concatenated, split='')
 
 #create data.frame
-discretized <- cbind(do.call(rbind, splited), data[30])
+train_discretized <- cbind(do.call(rbind, train_splited), train_data[30])
+test_discretized <- cbind(do.call(rbind, test_splited), test_data[30])
 
-split_ratio <- 0.8
-sample <- sample.split(discretized, split_ratio)
-train <- subset(discretized, sample == TRUE)
-test  <- subset(discretized, sample == FALSE)
 
-write.csv(train, file = "./data/ccfd/discretized/train.csv", row.names = FALSE)
-write.csv(test, file = "./data/ccfd/discretized/test.csv", row.names = FALSE)
+write.csv(train_discretized, file = "./data/ccfd/discretized/train.csv", row.names = FALSE)
+write.csv(test_discretized, file = "./data/ccfd/discretized/test.csv", row.names = FALSE)
