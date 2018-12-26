@@ -41,3 +41,6 @@ rsconnect/
 *.Rproj
 *.hdf5
 .idea
+*.log
+*.png
+Rplots.pdf

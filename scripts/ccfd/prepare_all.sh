@@ -1,3 +1,5 @@
-for dir in ./data/ccfd/*; do
-  Rscript ${dir}/prepare.R
+#!/bin/sh
+
+for data_dir in ./data/ccfd/*; do
+  Rscript ${data_dir}/prepare.R | tee ${data_dir}/prepare.log
 done
