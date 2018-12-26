@@ -3,7 +3,7 @@ library(cloudml)
 
 FLAGS <- flags(
   flag_integer("epochs", 10),
-  flag_integer("second_layer_units", 20),
+  flag_integer("second_layer_units", 100),
   flag_string("encoder_activation", "relu"),
   flag_string("decoder_activation", "sigmoid")
 )
@@ -11,12 +11,12 @@ FLAGS <- flags(
 data_dir <- "./data/ccfd/discretized"
 train <- read.csv(file = file.path(data_dir, "train.csv"), header = TRUE, sep = ",", row.names = NULL)
 
-X_train <- as.matrix(train[1:60])
+X_train <- as.matrix(train[1:240])
 
 model <- keras_model_sequential()
 model %>%
-  layer_dense(units = FLAGS$second_layer_units, activation = FLAGS$encoder_activation, input_shape = 60) %>%
-  layer_dense(units = 60, activation = FLAGS$decoder_activation)
+  layer_dense(units = FLAGS$second_layer_units, activation = FLAGS$encoder_activation, input_shape = 240) %>%
+  layer_dense(units = 240, activation = FLAGS$decoder_activation)
 
 model %>% compile(
   loss = "mean_squared_error",
