@@ -4,7 +4,10 @@ set.seed(42)
 
 data <- read.csv(file = "./data/ccfd/raw/creditcard.csv", header = TRUE, sep = ",", row.names = NULL)
 
-data[1:30] <- scale(data[1:30])
+# Drop unnecessary Time column
+data <- subset(data, select = -c(Time))
+
+data[1:29] <- scale(data[1:29])
 
 split_ratio <- 0.8
 sample <- sample.split(data, split_ratio)
