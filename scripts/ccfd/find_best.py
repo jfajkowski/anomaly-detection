@@ -42,13 +42,14 @@ def weighted_choice(items):
     weights = [item[1] for item in items]
     weight_min = min(weights)
     weight_max = max(weights)
-    weights_normalized = [(x - weight_min) / (weight_max - weight_min) for x in weights]
+    weights_normalized = [(x - weight_min) / (weight_max - weight_min) for x in
+                          weights] if weight_min != weight_max else weights
     weight_total = sum(weights_normalized)
     n = random.uniform(0, weight_total)
     for i, item in enumerate(items):
-        if n < weights[i]:
+        if n <= weights_normalized[i]:
             return item[0]
-        n = n - weights[i]
+        n = n - weights_normalized[i]
 
 
 def model_dir(individual):
