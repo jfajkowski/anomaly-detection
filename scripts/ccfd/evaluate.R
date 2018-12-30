@@ -2,6 +2,7 @@ library(keras)
 library(OptimalCutpoints)
 library(caret)
 library(pROC)
+library(PRROC)
 library(ggplot2)
 library(yaml)
 library(e1071)
@@ -10,8 +11,10 @@ library(e1071)
 #install.packages('caret')
 #install.packages('pROC')
 #install.packages('e1071')
+#install.packages('PRROC')
 
 source("./scripts/common/normalization.R")
+source("./scripts/common/metrics.R")
 
 args <- commandArgs(trailingOnly = TRUE)
 
@@ -35,6 +38,13 @@ if(FLAGS$metric == "mse"){
 }
 
 colnames(y_predict) <- c("Error")
+
+#calculate PR roc
+annomaly <- y_predict[y_test == 1]
+norm <- y_predict[y_test == 0]
+prroc_curve <- pr.curve(scores.class0 = annomaly, scores.class1 = norm, curve = TRUE)
+prroc_curve
+plot(prroc_curve)
 
 # Calculate ROC and AUC
 roc_curve <- roc(as.vector(y_test), as.vector(y_predict))
