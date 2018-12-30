@@ -6,3 +6,4 @@ fourth_layer_units: 15
 encoder_activation: "relu"
 decoder_activation: "sigmoid"
 data_dir: "./data/ccfd/normalized_l2"
+metric: "mse"
