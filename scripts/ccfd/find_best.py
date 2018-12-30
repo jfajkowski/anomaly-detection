@@ -6,7 +6,7 @@ import yaml
 
 FLAGS = {
     "batch_size": [4096],
-    "epochs": list(range(10, 100)),
+    "epochs": list(range(10, 50)),
     "second_layer_units": list(range(1, 20)),
     "encoder_activation": ["relu", "sigmoid", "tanh"],
     "decoder_activation": ["relu", "sigmoid", "tanh"],
@@ -140,7 +140,7 @@ if __name__ == "__main__":
             ind2 = (INDIVIDUALS_COUNTER, mutate(dna2))
 
             prepare_model(ind1)
-            train_and_evaluate(ind2)
+            train_and_evaluate(ind1)
 
             prepare_model(ind2)
             train_and_evaluate(ind2)
