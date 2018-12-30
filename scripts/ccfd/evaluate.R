@@ -37,6 +37,7 @@ norm <- y_predict[y_test == 0]
 prroc_curve <- pr.curve(scores.class0 = annomaly, scores.class1 = norm, curve = TRUE)
 prroc_curve
 plot(prroc_curve)
+ggsave(file.path(model_dir, paste("prroc.png", sep = "")))
 
 # Calculate ROC and AUC
 roc_curve <- roc(as.vector(y_test), as.vector(y_predict))
