@@ -31,22 +31,23 @@ if(FLAGS$metric == "mse"){
 
 colnames(y_predict) <- c("Error")
 
-#calculate PR roc
-annomaly <- y_predict[y_test == 1]
-norm <- y_predict[y_test == 0]
-prroc_curve <- pr.curve(scores.class0 = annomaly, scores.class1 = norm, curve = TRUE)
-prroc_curve
-plot(prroc_curve)
-ggsave(file.path(model_dir, paste("prroc.png", sep = "")))
+# Calculate PR curve and area under it
+prroc_curve <- pr.curve(scores.class0 = y_predict, weights.class0 = y_test, curve = TRUE)
+cat("Area under PR curve:", prroc_curve$auc.integral, "\n")
 
-# Calculate ROC and AUC
+# Calculate ROC and area under it
 roc_curve <- roc(as.vector(y_test), as.vector(y_predict))
-auc(roc_curve)
+cat("Area under ROC curve:", auc(roc_curve), "\n")
 
 # Find optimal cutoff point
 cutoff <- coords(roc_curve, "best", "threshold")
 cat("Optimal cutoff point:", cutoff["threshold"], "\n")
 confusionMatrix(table(y_predict > cutoff["threshold"], y_test == 1))
+
+# Plot PR curve data
+png(filename=file.path(model_dir, paste("pr.png", sep = "")))
+plot(prroc_curve)
+dev.off();
 
 # Plot ROC data
 roc_df = data.frame(tpr=roc_curve$sensitivities, fpr=1-roc_curve$specificities)

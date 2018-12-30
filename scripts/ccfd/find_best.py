@@ -75,16 +75,16 @@ def train_and_evaluate(individual):
 def fitness(individual):
     with open(model_dir(individual) + "/evaluate.log") as file:
         for line in file:
-            key = "Area under the curve:"
+            key = "Area under PR curve:"
             if key in line:
                 return float(line.split(':')[1].strip())
 
 
 def mutate(dna):
     dna_out = {}
-    mutation_chance = 100
+    mutation_chance = 0.05
     for k, v in FLAGS.items():
-        if int(random.random() * mutation_chance) == 1:
+        if random.random() < mutation_chance:
             dna_out[k] = random.choice(v)
         else:
             dna_out[k] = dna[k]
