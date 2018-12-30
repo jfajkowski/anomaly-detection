@@ -1,25 +1,17 @@
-library(keras)
-library(OptimalCutpoints)
-library(caret)
-library(pROC)
-library(PRROC)
-library(ggplot2)
-library(yaml)
-library(e1071)
-
-#install.packages('OptimalCutpoints')
-#install.packages('caret')
-#install.packages('pROC')
-#install.packages('e1071')
-#install.packages('PRROC')
+require(keras)
+require(OptimalCutpoints)
+require(caret)
+require(pROC)
+require(PRROC)
+require(ggplot2)
+require(yaml)
+require(e1071)
 
 source("./scripts/common/normalization.R")
-source("./scripts/common/metrics.R")
 
 args <- commandArgs(trailingOnly = TRUE)
 
 model_dir <- args[1]
-#model_dir <- "./models/ccfd/normalized_l2/3_layers"
 
 FLAGS <- read_yaml(paste(model_dir, "/flags.yml", sep = ""))
 

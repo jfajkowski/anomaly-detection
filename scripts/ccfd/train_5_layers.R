@@ -1,5 +1,5 @@
-library(keras)
-library(cloudml)
+require(keras)
+require(cloudml)
 
 args <- commandArgs(trailingOnly = TRUE)
 
