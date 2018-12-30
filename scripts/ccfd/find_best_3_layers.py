@@ -1,6 +1,6 @@
 import random
 
-flags = {
+FLAGS = {
     "batch_size": [4096],
     "epochs": list(range(10, 100)),
     "second_layer_units": list(range(1, 20)),
@@ -11,20 +11,20 @@ flags = {
 }
 
 POP_SIZE = 10
-DNA_SIZE = len(flags.items())
-
+DNA_SIZE = len(FLAGS.items())
+GENERATIONS = 10
 
 def random_population():
   population = []
   for _ in range(POP_SIZE):
-    population.append(random_flags())
+    population.append(random_dna())
   return population
 
-def random_flags():
-    flags = {}
-    for k, v in flags.items():
-        flags[k] = random.choice(v)
-    return flags
+def random_dna():
+    dna = {}
+    for k, v in FLAGS.items():
+        dna[k] = random.choice(v)
+    return dna
 
 def weighted_choice(items):
   weight_total = sum((item[1] for item in items))
@@ -47,54 +47,41 @@ def find_auc(filename):
 #
 
 def fitness(dna):
-  """
-  For each gene in the DNA, this function calculates the difference between
-  it and the character in the same position in the OPTIMAL string. These values
-  are summed and then returned.
-  """
   fitness = 0
   auc = find_auc("...")
-  for c in xrange(DNA_SIZE):
+  
+  for c in range(DNA_SIZE):
     fitness += abs(ord(dna[c]) - ord(OPTIMAL[c]))
   return fitness
 
 def mutate(dna):
-  """
-  For each gene in the DNA, there is a 1/mutation_chance chance that it will be
-  switched out with a random character. This ensures diversity in the
-  population, and ensures that is difficult to get stuck in local minima.
-  """
-  dna_out = ""
+  dna_out = {}
   mutation_chance = 100
-  for c in xrange(DNA_SIZE):
-    if int(random.random()*mutation_chance) == 1:
-      dna_out += random_char()
+  for k, v in FLAGS.items():
+    if int(random.random() * mutation_chance) == 1:
+      dna_out += random.choice(v)
     else:
-      dna_out += dna[c]
+      dna_out += dna[k]
   return dna_out
 
 def crossover(dna1, dna2):
-  """
-  Slices both dna1 and dna2 into two parts at a random index within their
-  length and merges them. Both keep their initial sublist up to the crossover
-  index, but their ends are swapped.
-  """
-  pos = int(random.random()*DNA_SIZE)
-  return (dna1[:pos]+dna2[pos:], dna2[:pos]+dna1[pos:])
+  position = int(random.random() * DNA_SIZE)
+  keys = (FLAGS.keys()[:position], FLAGS.keys()[position:])
+  dna_outs = ({}, {})
+  for k in keys[0]:
+      dna_outs[0][k] = dna1[k]
+      dna_outs[1][k] = dna2[k]
+  for k in keys[1]:
+      dna_outs[0][k] = dna2[k]
+      dna_outs[1][k] = dna1[k]
+  return dna_outs
 
-#
-# Main driver
-# Generate a population and simulate GENERATIONS generations.
-#
 
 if __name__ == "__main__":
-  # Generate initial population. This will create a list of POP_SIZE strings,
-  # each initialized to a sequence of random characters.
   population = random_population()
 
-  # Simulate all of the generations.
-  for generation in xrange(GENERATIONS):
-    print "Generation %s... Random sample: '%s'" % (generation, population[0])
+  for generation in range(GENERATIONS):
+    print("Generation %s... Random sample: '%s'" % (generation, population[0]))
     weighted_population = []
 
     # Add individuals and their respective fitness levels to the weighted
@@ -109,7 +96,7 @@ if __name__ == "__main__":
       if fitness_val == 0:
         pair = (individual, 1.0)
       else:
-        pair = (individual, 1.0/fitness_val)
+        pair = (individual, 1.0 / fitness_val)
 
       weighted_population.append(pair)
 
@@ -118,7 +105,7 @@ if __name__ == "__main__":
     # Select two random individuals, based on their fitness probabilites, cross
     # their genes over at a random point, mutate them, and add them back to the
     # population for the next iteration.
-    for _ in xrange(POP_SIZE/2):
+    for _ in range(int(POP_SIZE / 2)):
       # Selection
       ind1 = weighted_choice(weighted_population)
       ind2 = weighted_choice(weighted_population)
@@ -130,17 +117,14 @@ if __name__ == "__main__":
       population.append(mutate(ind1))
       population.append(mutate(ind2))
 
-  # Display the highest-ranked string after all generations have been iterated
-  # over. This will be the closest string to the OPTIMAL string, meaning it
-  # will have the smallest fitness value. Finally, exit the program.
-  fittest_string = population[0]
+
+  best_individual = population[0]
   minimum_fitness = fitness(population[0])
 
   for individual in population:
     ind_fitness = fitness(individual)
     if ind_fitness <= minimum_fitness:
-      fittest_string = individual
+      best_individual = individual
       minimum_fitness = ind_fitness
 
-  print "Fittest String: %s" % fittest_string
-  exit(0)
+  print("Best individual: %s" % best_individual)
