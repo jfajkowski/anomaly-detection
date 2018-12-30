@@ -34,6 +34,13 @@ def weighted_choice(items):
       return item
     n = n - weight
 
+def find_auc(filename):
+  with open(filename) as file:
+    for line in file:
+      key = "Area under the curve:"
+      if key in line:
+        return float(line.split(':')[1].strip())
+
 #
 # GA functions
 # These make up the bulk of the actual GA algorithm.
@@ -46,6 +53,7 @@ def fitness(dna):
   are summed and then returned.
   """
   fitness = 0
+  auc = find_auc("...")
   for c in xrange(DNA_SIZE):
     fitness += abs(ord(dna[c]) - ord(OPTIMAL[c]))
   return fitness
