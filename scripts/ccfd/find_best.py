@@ -16,7 +16,7 @@ FLAGS = {
 }
 
 WORKING_DIR = "./models/ccfd/find_best"
-POP_SIZE = 2
+POP_SIZE = 10
 DNA_SIZE = len(FLAGS.items())
 GENERATIONS = 10
 INDIVIDUALS_COUNTER = 0
@@ -81,15 +81,16 @@ def mutate(dna):
     mutation_chance = 100
     for k, v in FLAGS.items():
         if int(random.random() * mutation_chance) == 1:
-            dna_out += random.choice(v)
+            dna_out[k] = random.choice(v)
         else:
-            dna_out += dna[k]
+            dna_out[k] = dna[k]
     return dna_out
 
 
 def crossover(dna1, dna2):
     position = int(random.random() * DNA_SIZE)
-    keys = (FLAGS.keys()[:position], FLAGS.keys()[position:])
+    keys = list(FLAGS.keys())
+    keys = (keys[:position], keys[position:])
     dna_outs = ({}, {})
     for k in keys[0]:
         dna_outs[0][k] = dna1[k]
@@ -130,7 +131,7 @@ if __name__ == "__main__":
             dna2 = weighted_choice(weighted_population)
 
             # Crossover
-            dna1, dna2 = crossover(dna1, dna2)
+            dna1, dna2 = crossover(dna1[1], dna2[1])
 
             # Mutate and add back into the population.
             INDIVIDUALS_COUNTER += 1
@@ -141,7 +142,7 @@ if __name__ == "__main__":
             prepare_model(ind1)
             train_and_evaluate(ind2)
 
-            prepare_model(ind1)
+            prepare_model(ind2)
             train_and_evaluate(ind2)
 
             population.append(ind1)
