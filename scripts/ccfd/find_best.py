@@ -4,17 +4,32 @@ import subprocess
 
 import yaml
 
-FLAGS = {
+FLAGS_3_LAYERS = {
     "batch_size": [4096],
     "epochs": list(range(10, 50)),
     "second_layer_units": list(range(1, 20)),
-    "encoder_activation": ["relu", "sigmoid", "tanh"],
-    "decoder_activation": ["relu", "sigmoid", "tanh"],
+    "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
+    "decoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
     "data_dir": ["./data/ccfd/discretized", "./data/ccfd/normalized_l2", "./data/ccfd/normalized_min_max",
                  "./data/ccfd/raw", "./data/ccfd/scaled"],
     "metric": ["mae", "mse"]
 }
 
+FLAGS_5_LAYERS = {
+    "batch_size": [4096],
+    "epochs": list(range(10, 50)),
+    "second_layer_units": list(range(1, 20)),
+    "third_layer_units": list(range(1, 20)),
+    "fourth_layer_units": list(range(1, 20)),
+    "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
+    "decoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
+    "data_dir": ["./data/ccfd/discretized", "./data/ccfd/normalized_l2", "./data/ccfd/normalized_min_max",
+                 "./data/ccfd/raw", "./data/ccfd/scaled"],
+    "metric": ["mae", "mse"]
+}
+
+TRAINING_SCRIPT = "./scripts/ccfd/train_5_layers.R"
+FLAGS = FLAGS_5_LAYERS
 WORKING_DIR = "./models/ccfd/find_best"
 POP_SIZE = 10
 DNA_SIZE = len(FLAGS.items())
@@ -64,8 +79,8 @@ def prepare_model(individual):
 
 def train_and_evaluate(individual):
     commands = [
-        "Rscript ./scripts/ccfd/train_3_layers.R {model_dir} | tee {model_dir}/train.log".format(
-            model_dir=model_dir(individual)),
+        "Rscript {training_script} {model_dir} | tee {model_dir}/train.log".format(
+            training_script=TRAINING_SCRIPT, model_dir=model_dir(individual)),
         "Rscript ./scripts/ccfd/evaluate.R {model_dir} | tee {model_dir}/evaluate.log".format(
             model_dir=model_dir(individual)),
     ]
