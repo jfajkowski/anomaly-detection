@@ -1,3 +1,4 @@
+import os
 import random
 import subprocess
 
@@ -14,24 +15,27 @@ FLAGS = {
     "metric": ["mae", "mse"]
 }
 
-WORKING_DIR = "./models/find_best"
-POP_SIZE = 10
+WORKING_DIR = "./models/ccfd/find_best"
+POP_SIZE = 2
 DNA_SIZE = len(FLAGS.items())
 GENERATIONS = 10
+INDIVIDUALS_COUNTER = 0
 
 
 def random_population():
     population = []
     for _ in range(POP_SIZE):
-        population.append(random_dna())
+        population.append(random_individual())
     return population
 
 
-def random_dna():
+def random_individual():
+    global INDIVIDUALS_COUNTER
     dna = {}
     for k, v in FLAGS.items():
         dna[k] = random.choice(v)
-    return dna
+    INDIVIDUALS_COUNTER += 1
+    return (INDIVIDUALS_COUNTER, dna)
 
 
 def weighted_choice(items):
@@ -43,28 +47,29 @@ def weighted_choice(items):
         n = n - weight
 
 
-def model_dir(id):
-    return WORKING_DIR + "/" + id
+def model_dir(individual):
+    return WORKING_DIR + "/" + str(individual[0])
 
 
-def prepare_model(id, flags):
-    with open(model_dir(id) + "/flags.yml", "w") as file:
-        yaml.dump(flags, file)
+def prepare_model(individual):
+    os.makedirs(model_dir(individual), exist_ok=True)
+    with open(model_dir(individual) + "/flags.yml", "w") as file:
+        yaml.dump(individual[1], file, default_flow_style=False)
 
 
-def train_and_evaluate(id):
+def train_and_evaluate(individual):
     commands = [
-        "Rscript ./scripts/ccfd/train_3_layers.R {model_dir}/3_layers | tee {model_dir}/3_layers/train.log".format(
-            model_dir=model_dir(id)),
-        "Rscript ./scripts/ccfd/evaluate.R {model_dir}/3_layers | tee {model_dir}/3_layers/evaluate.log".format(
-            model_dir=model_dir(id)),
+        "Rscript ./scripts/ccfd/train_3_layers.R {model_dir} | tee {model_dir}/train.log".format(
+            model_dir=model_dir(individual)),
+        "Rscript ./scripts/ccfd/evaluate.R {model_dir} | tee {model_dir}/evaluate.log".format(
+            model_dir=model_dir(individual)),
     ]
     for command in commands:
         subprocess.call(command, shell=True)
 
 
-def fitness(id):
-    with open(model_dir(id) + "/evaluate.log") as file:
+def fitness(individual):
+    with open(model_dir(individual) + "/evaluate.log") as file:
         for line in file:
             key = "Area under the curve:"
             if key in line:
@@ -96,17 +101,15 @@ def crossover(dna1, dna2):
 
 
 if __name__ == "__main__":
-    i = 0
     population = random_population()
 
     for individual in population:
-        prepare_model(i, individual)
-        train_and_evaluate(i)
-        i += 1
+        prepare_model(individual)
+        train_and_evaluate(individual)
 
+    weighted_population = []
     for generation in range(GENERATIONS):
         print("Generation %s... Random sample: '%s'" % (generation, population[0]))
-        weighted_population = []
 
         # Add individuals and their respective fitness levels to the weighted
         # population list. This will be used to pull out individuals via certain
@@ -114,15 +117,7 @@ if __name__ == "__main__":
         # so we can repopulate it after selection.
         for individual in population:
             fitness_val = fitness(individual)
-
-            # Generate the (individual,fitness) pair, taking in account whether or
-            # not we will accidently divide by zero.
-            if fitness_val == 0:
-                pair = (individual, 1.0)
-            else:
-                pair = (individual, 1.0 / fitness_val)
-
-            weighted_population.append(pair)
+            weighted_population.append((individual, fitness_val))
 
         population = []
 
@@ -131,33 +126,33 @@ if __name__ == "__main__":
         # population for the next iteration.
         for _ in range(int(POP_SIZE / 2)):
             # Selection
-            ind1 = weighted_choice(weighted_population)
-            ind2 = weighted_choice(weighted_population)
+            dna1 = weighted_choice(weighted_population)
+            dna2 = weighted_choice(weighted_population)
 
             # Crossover
-            ind1, ind2 = crossover(ind1, ind2)
+            dna1, dna2 = crossover(dna1, dna2)
 
             # Mutate and add back into the population.
-            mut_ind1, mut_ind2 = mutate(ind1), mutate(ind2)
+            INDIVIDUALS_COUNTER += 1
+            ind1 = (INDIVIDUALS_COUNTER, mutate(dna1))
+            INDIVIDUALS_COUNTER += 1
+            ind2 = (INDIVIDUALS_COUNTER, mutate(dna2))
 
-            prepare_model(i, mut_ind1)
-            train_and_evaluate(mut_ind1)
-            i += 1
+            prepare_model(ind1)
+            train_and_evaluate(ind2)
 
-            prepare_model(i, mut_ind2)
-            train_and_evaluate(mut_ind2)
-            i += 1
+            prepare_model(ind1)
+            train_and_evaluate(ind2)
 
-            population.append(mut_ind1)
-            population.append(mut_ind2)
+            population.append(ind1)
+            population.append(ind2)
 
-    best_individual = population[0]
-    minimum_fitness = fitness(population[0])
-
-    for individual in population:
-        ind_fitness = fitness(individual)
-        if ind_fitness <= minimum_fitness:
+    best_individual = weighted_population[0][0]
+    max_fitness = weighted_population[0][1]
+    for individual, ind_fitness in weighted_population:
+        if ind_fitness >= max_fitness:
             best_individual = individual
-            minimum_fitness = ind_fitness
+            max_fitness = ind_fitness
 
-    print("Best individual: %s" % best_individual)
+    print(weighted_population)
+    print("Best individual: %s" % best_individual[0])
