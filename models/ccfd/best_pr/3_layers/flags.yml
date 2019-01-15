@@ -1,0 +1,7 @@
+batch_size: 4096
+data_dir: ./data/ccfd/normalized_l2
+decoder_activation: sigmoid
+encoder_activation: tanh
+epochs: 17
+metric: mae
+second_layer_units: 1

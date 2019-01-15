@@ -4,18 +4,33 @@ import subprocess
 
 import yaml
 
-FLAGS = {
+FLAGS_3_LAYERS = {
     "batch_size": [4096],
     "epochs": list(range(10, 50)),
     "second_layer_units": list(range(1, 20)),
-    "encoder_activation": ["relu", "sigmoid", "tanh"],
-    "decoder_activation": ["relu", "sigmoid", "tanh"],
+    "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
+    "decoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
     "data_dir": ["./data/ccfd/discretized", "./data/ccfd/normalized_l2", "./data/ccfd/normalized_min_max",
                  "./data/ccfd/raw", "./data/ccfd/scaled"],
     "metric": ["mae", "mse"]
 }
 
-WORKING_DIR = "./models/ccfd/find_best"
+FLAGS_5_LAYERS = {
+    "batch_size": [4096],
+    "epochs": list(range(10, 50)),
+    "second_layer_units": list(range(1, 20)),
+    "third_layer_units": list(range(1, 20)),
+    "fourth_layer_units": list(range(1, 20)),
+    "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
+    "decoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
+    "data_dir": ["./data/ccfd/discretized", "./data/ccfd/normalized_l2", "./data/ccfd/normalized_min_max",
+                 "./data/ccfd/raw", "./data/ccfd/scaled"],
+    "metric": ["mae", "mse"]
+}
+
+TRAINING_SCRIPT = "./scripts/ccfd/train_5_layers.R"
+FLAGS = FLAGS_5_LAYERS
+WORKING_DIR = "./models/ccfd/genetic_algorithm/find_best"
 POP_SIZE = 10
 DNA_SIZE = len(FLAGS.items())
 GENERATIONS = 10
@@ -39,12 +54,17 @@ def random_individual():
 
 
 def weighted_choice(items):
-    weight_total = sum((item[1] for item in items))
+    weights = [item[1] for item in items]
+    weight_min = min(weights)
+    weight_max = max(weights)
+    weights_normalized = [(x - weight_min) / (weight_max - weight_min) for x in
+                          weights] if weight_min != weight_max else weights
+    weight_total = sum(weights_normalized)
     n = random.uniform(0, weight_total)
-    for item, weight in items:
-        if n < weight:
-            return item
-        n = n - weight
+    for i, item in enumerate(items):
+        if n <= weights_normalized[i]:
+            return item[0]
+        n = n - weights_normalized[i]
 
 
 def model_dir(individual):
@@ -59,8 +79,8 @@ def prepare_model(individual):
 
 def train_and_evaluate(individual):
     commands = [
-        "Rscript ./scripts/ccfd/train_3_layers.R {model_dir} | tee {model_dir}/train.log".format(
-            model_dir=model_dir(individual)),
+        "Rscript {training_script} {model_dir} | tee {model_dir}/train.log".format(
+            training_script=TRAINING_SCRIPT, model_dir=model_dir(individual)),
         "Rscript ./scripts/ccfd/evaluate.R {model_dir} | tee {model_dir}/evaluate.log".format(
             model_dir=model_dir(individual)),
     ]
@@ -71,16 +91,16 @@ def train_and_evaluate(individual):
 def fitness(individual):
     with open(model_dir(individual) + "/evaluate.log") as file:
         for line in file:
-            key = "Area under the curve:"
+            key = "Area under PR curve:"
             if key in line:
                 return float(line.split(':')[1].strip())
 
 
 def mutate(dna):
     dna_out = {}
-    mutation_chance = 100
+    mutation_chance = 0.05
     for k, v in FLAGS.items():
-        if int(random.random() * mutation_chance) == 1:
+        if random.random() < mutation_chance:
             dna_out[k] = random.choice(v)
         else:
             dna_out[k] = dna[k]
