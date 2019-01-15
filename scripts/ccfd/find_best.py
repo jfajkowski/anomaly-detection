@@ -30,7 +30,7 @@ FLAGS_5_LAYERS = {
 
 TRAINING_SCRIPT = "./scripts/ccfd/train_5_layers.R"
 FLAGS = FLAGS_5_LAYERS
-WORKING_DIR = "./models/ccfd/find_best"
+WORKING_DIR = "./models/ccfd/genetic_algorithm/find_best"
 POP_SIZE = 10
 DNA_SIZE = len(FLAGS.items())
 GENERATIONS = 10
