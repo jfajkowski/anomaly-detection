@@ -15,8 +15,8 @@ anomalies <- data[which(data$Class == 1),]
 
 # Use sampling with replacement to change anomalies to all samples ratio
 for (ratio in c(0.001, 0.005, 0.01, 0.05, 0.1)) {
-  sampled_normals <- anomalies[sample(nrow(normals), (1 - ratio) * nrow(data), replace = TRUE),]
-  sampled_anomalies <-anomalies[sample(nrow(anomalies), ratio * nrow(data), replace = TRUE),]
+  sampled_normals <- normals[sample(nrow(normals), (1 - ratio) * nrow(data), replace = TRUE),]
+  sampled_anomalies <- anomalies[sample(nrow(anomalies), ratio * nrow(data), replace = TRUE),]
   sampled_data <- rbind(sampled_normals, sampled_anomalies)
   
   split_ratio <- 0.8
