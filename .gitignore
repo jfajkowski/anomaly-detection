@@ -44,4 +44,4 @@ rsconnect/
 *.log
 *.png
 Rplots.pdf
-models/ccfd/genetic_algorithm/*
+models/genetic_algorithm/*
