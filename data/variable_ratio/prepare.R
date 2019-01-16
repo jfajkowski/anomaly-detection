@@ -2,7 +2,7 @@ library(caTools)
 
 set.seed(42)
 
-data <- read.csv(file = "./data/ccfd/raw/creditcard.csv", header = TRUE, sep = ",", row.names = NULL)
+data <- read.csv(file = "./data/raw/creditcard.csv", header = TRUE, sep = ",", row.names = NULL)
 
 # Drop unnecessary Time column
 data <- subset(data, select = -c(Time))
@@ -24,7 +24,7 @@ for (ratio in c(0.001, 0.005, 0.01, 0.05, 0.1)) {
   train <- subset(sampled_data, sampled == TRUE)
   test  <- subset(sampled_data, sampled == FALSE)
   
-  directory <- file.path("./data/ccfd/variable_ratio", toString(ratio))
+  directory <- file.path("./data/variable_ratio", toString(ratio))
   dir.create(directory)
   write.csv(train, file = file.path(directory, "train.csv"), row.names = FALSE)
   write.csv(test, file = file.path(directory, "test.csv"), row.names = FALSE)

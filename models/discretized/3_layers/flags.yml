@@ -3,5 +3,5 @@ epochs: 10
 second_layer_units: 100
 encoder_activation: "relu"
 decoder_activation: "sigmoid"
-data_dir: "./data/ccfd/discretized"
+data_dir: "./data/discretized"
 metric: "mse"

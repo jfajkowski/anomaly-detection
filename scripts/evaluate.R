@@ -7,7 +7,7 @@ require(ggplot2)
 require(yaml)
 require(e1071)
 
-source("./scripts/common/normalization.R")
+source("./scripts/normalization.R")
 
 args <- commandArgs(trailingOnly = TRUE)
 

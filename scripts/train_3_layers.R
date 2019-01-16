@@ -4,7 +4,7 @@ require(cloudml)
 args <- commandArgs(trailingOnly = TRUE)
 
 model_dir <- args[1]
-#model_dir <- "./models/ccfd/normalized_l2/3_layers"
+#model_dir <- "./models/normalized_l2/3_layers"
 
 FLAGS <- flags(
   file = paste(model_dir, "/flags.yml", sep = ""),
@@ -13,7 +13,7 @@ FLAGS <- flags(
   flag_integer("second_layer_units", 20),
   flag_string("encoder_activation", "relu"),
   flag_string("decoder_activation", "sigmoid"),
-  flag_string("data_dir", "./data/ccfd/raw"),
+  flag_string("data_dir", "./data/raw"),
   flag_string("metric", "mse")
 )
 

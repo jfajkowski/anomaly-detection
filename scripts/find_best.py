@@ -10,8 +10,8 @@ FLAGS_3_LAYERS = {
     "second_layer_units": list(range(1, 20)),
     "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
     "decoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
-    "data_dir": ["./data/ccfd/discretized", "./data/ccfd/normalized_l2", "./data/ccfd/normalized_min_max",
-                 "./data/ccfd/raw", "./data/ccfd/scaled"],
+    "data_dir": ["./data/discretized", "./data/normalized_l2", "./data/normalized_min_max",
+                 "./data/raw", "./data/scaled"],
     "metric": ["mae", "mse"]
 }
 
@@ -23,14 +23,14 @@ FLAGS_5_LAYERS = {
     "fourth_layer_units": list(range(1, 20)),
     "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
     "decoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
-    "data_dir": ["./data/ccfd/discretized", "./data/ccfd/normalized_l2", "./data/ccfd/normalized_min_max",
-                 "./data/ccfd/raw", "./data/ccfd/scaled"],
+    "data_dir": ["./data/discretized", "./data/normalized_l2", "./data/normalized_min_max",
+                 "./data/raw", "./data/scaled"],
     "metric": ["mae", "mse"]
 }
 
-TRAINING_SCRIPT = "./scripts/ccfd/train_5_layers.R"
+TRAINING_SCRIPT = "./scripts/train_5_layers.R"
 FLAGS = FLAGS_5_LAYERS
-WORKING_DIR = "./models/ccfd/genetic_algorithm/find_best"
+WORKING_DIR = "./models/genetic_algorithm/find_best"
 POP_SIZE = 10
 DNA_SIZE = len(FLAGS.items())
 GENERATIONS = 10
@@ -81,7 +81,7 @@ def train_and_evaluate(individual):
     commands = [
         "Rscript {training_script} {model_dir} | tee {model_dir}/train.log".format(
             training_script=TRAINING_SCRIPT, model_dir=model_dir(individual)),
-        "Rscript ./scripts/ccfd/evaluate.R {model_dir} | tee {model_dir}/evaluate.log".format(
+        "Rscript ./scripts/evaluate.R {model_dir} | tee {model_dir}/evaluate.log".format(
             model_dir=model_dir(individual)),
     ]
     for command in commands:

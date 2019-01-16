@@ -9,10 +9,10 @@ require(ggplot2)
 require(yaml)
 require(e1071)
 
-source("./scripts/common/normalization.R")
+source("./scripts/normalization.R")
 
-data_dir <- "./data/ccfd/scaled"
-model_dir <- "./models/ccfd/scaled/3_layers"
+data_dir <- "./data/scaled"
+model_dir <- "./models/scaled/3_layers"
 
 FLAGS <- flags(
   file = paste(model_dir, "/flags.yml", sep = ""),
@@ -21,7 +21,7 @@ FLAGS <- flags(
   flag_integer("second_layer_units", 20),
   flag_string("encoder_activation", "relu"),
   flag_string("decoder_activation", "sigmoid"),
-  flag_string("data_dir", "./data/ccfd/scaled"),
+  flag_string("data_dir", "./data/scaled"),
   flag_string("metric", "mse")
 )
 

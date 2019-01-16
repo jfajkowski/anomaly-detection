@@ -3,7 +3,7 @@ require(cloudml)
 require(caret)
 require(dplyr)
 
-data_dir <- "./data/ccfd/raw"
+data_dir <- "./data/raw"
 
 raw <- read.csv(file = file.path(data_dir, "train.csv"), header = TRUE, sep = ",", row.names = NULL)
 
