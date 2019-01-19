@@ -5,7 +5,7 @@ import subprocess
 import yaml
 
 FLAGS_3_LAYERS = {
-    "batch_size": [4096],
+    "batch_size": [16384],
     "epochs": list(range(10, 50)),
     "second_layer_units": list(range(1, 20)),
     "encoder_activation": ["relu", "sigmoid", "tanh", "softmax"],
@@ -16,7 +16,7 @@ FLAGS_3_LAYERS = {
 }
 
 FLAGS_5_LAYERS = {
-    "batch_size": [4096],
+    "batch_size": [16384],
     "epochs": list(range(10, 50)),
     "second_layer_units": list(range(1, 20)),
     "third_layer_units": list(range(1, 20)),
@@ -28,9 +28,9 @@ FLAGS_5_LAYERS = {
     "metric": ["mae", "mse"]
 }
 
-TRAINING_SCRIPT = "./scripts/train_5_layers.R"
-FLAGS = FLAGS_5_LAYERS
-WORKING_DIR = "./models/genetic_algorithm/find_best"
+TRAINING_SCRIPT = "./scripts/train_3_layers.R"
+FLAGS = FLAGS_3_LAYERS
+WORKING_DIR = "./models/find_best/3_layers_combined"
 POP_SIZE = 10
 DNA_SIZE = len(FLAGS.items())
 GENERATIONS = 10
@@ -90,15 +90,22 @@ def train_and_evaluate(individual):
 
 def fitness(individual):
     with open(model_dir(individual) + "/evaluate.log") as file:
+        auprc = 0
         for line in file:
             key = "Area under PR curve:"
             if key in line:
-                return float(line.split(':')[1].strip())
+                auprc = float(line.split(':')[1].strip())
+        aurocc = 0
+        for line in file:
+            key = "Area under PR curve:"
+            if key in line:
+                aurocc = float(line.split(':')[1].strip())
+        return auprc * aurocc
 
 
 def mutate(dna):
     dna_out = {}
-    mutation_chance = 0.05
+    mutation_chance = 0.1
     for k, v in FLAGS.items():
         if random.random() < mutation_chance:
             dna_out[k] = random.choice(v)

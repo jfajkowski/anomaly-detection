@@ -11,25 +11,31 @@ require(e1071)
 
 source("./scripts/normalization.R")
 
-data_dir <- "./data/scaled"
-model_dir <- "./models/scaled/3_layers"
+args <- commandArgs(trailingOnly = TRUE)
+
+data_dir <- args[1]
+model_dir <- args[2]
 
 FLAGS <- flags(
   file = paste(model_dir, "/flags.yml", sep = ""),
   flag_integer("batch_size", 4096),
   flag_integer("epochs", 10),
-  flag_integer("second_layer_units", 20),
+  flag_integer("second_layer_units", 15),
+  flag_integer("third_layer_units", 10),
+  flag_integer("fourth_layer_units", 15),
   flag_string("encoder_activation", "relu"),
   flag_string("decoder_activation", "sigmoid"),
-  flag_string("data_dir", "./data/scaled"),
+  flag_string("data_dir", "./data/raw"),
   flag_string("metric", "mse")
 )
 
-raw <- read.csv(file = file.path(data_dir, "train.csv"), header = TRUE, sep = ",", row.names = NULL)
-y_raw <- as.matrix(subset(raw, select = c(Class)))
+train <- read.csv(file = file.path(data_dir, "train.csv"), header = TRUE, sep = ",", row.names = NULL)
+test <- read.csv(file = file.path(data_dir, "test.csv"), header = TRUE, sep = ",", row.names = NULL)
+raw <- rbind(train, test)
 
 columns <- colnames(raw)
 
+y_raw <- as.matrix(subset(raw, select = c(Class)))
 folds <- createFolds(y_raw, k = 5)
 
 split_up <- lapply(folds, function(ind, dat) dat[ind,], dat = raw)
@@ -55,6 +61,8 @@ for (i in 1:5) {
   model <- keras_model_sequential()
   model %>%
     layer_dense(units = FLAGS$second_layer_units, activation = FLAGS$encoder_activation, input_shape = ncol(X_train)) %>%
+    layer_dense(units = FLAGS$third_layer_units, activation = FLAGS$encoder_activation) %>%
+    layer_dense(units = FLAGS$fourth_layer_units, activation = FLAGS$encoder_activation) %>%
     layer_dense(units = ncol(X_train), activation = FLAGS$decoder_activation)
   
   model %>% compile(
@@ -96,13 +104,17 @@ for (i in 1:5) {
   
   AUC_ROC <- auc(roc_curve)
   AUC_PR <- prroc_curve$auc.integral
-  Sensitivity <- cfmx[["byClass"]][["Sensitivity"]]
   Accuracy <- cfmx[["byClass"]][["Balanced Accuracy"]]
+  Sensitivity <- cfmx[["byClass"]][["Sensitivity"]]
   Specificity <- cfmx[["byClass"]][["Specificity"]]
   
   results_row <- data_frame(AUC_ROC, AUC_PR, Sensitivity, Accuracy, Specificity)
   df_result <- rbind(df_result, results_row)
 }
 
-
+cat("Average area under PR curve:", sum(df_result$AUC_PR) / 5, "\n")
+cat("Average area under ROC curve:", sum(df_result$AUC_ROC) / 5, "\n")
+cat("Average Accuracy:", sum(df_result$Accuracy) / 5, "\n")
+cat("Average Sensitivity:", sum(df_result$Sensitivity) / 5, "\n")
+cat("Average Specificity:", sum(df_result$Specificity) / 5, "\n")
 

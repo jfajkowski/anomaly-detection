@@ -44,4 +44,4 @@ rsconnect/
 *.log
 *.png
 Rplots.pdf
-models/genetic_algorithm/*
+models/find_best/*

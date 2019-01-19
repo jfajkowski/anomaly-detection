@@ -1,0 +1,9 @@
+batch_size: 16384
+data_dir: ./data/normalized_l2
+decoder_activation: tanh
+encoder_activation: tanh
+epochs: 40
+fourth_layer_units: 14
+metric: mae
+second_layer_units: 9
+third_layer_units: 10

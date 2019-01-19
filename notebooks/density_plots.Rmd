@@ -3,18 +3,22 @@ title: "Groups in time analysis"
 output: html_notebook
 ---
 
-First step is to load the training data and labels that are used to mark anomalies.
+First step is to import required libraries.
 
 ```{r}
-data <- read.csv(file="../data/train_data.csv", header=TRUE, sep=",", row.names=NULL)
+require(ggplot2)
+```
+
+Next step is to load the training data and labels that are used to mark anomalies.
+
+```{r}
+data <- read.csv(file="../data/raw/creditcard.csv", header=TRUE, sep=",", row.names=NULL)
 data_frame <- data.frame(data)
 getType <- function(x) {
-  if (x['category'] == 'normal') {
-    return('normal');
-  } else if (x['category'] == 'smurf' || x['category'] == 'neptune') {
-    return('ddos')
+  if (x['Class'] == 0) {
+    return('Normal');
   } else {
-    return('anomaly')
+    return('Anomaly')
   }
 }
 data_frame$type <- apply(data_frame, 1, getType)
@@ -26,6 +30,6 @@ We make a bar chart out of data.
 ```{r}
 numeric_column_names <- names(which(sapply(data_frame ,is.numeric)))
 for (column_name in numeric_column_names) {
-  print(ggplot(data_frame, aes_string(column_name, fill = 'type')) + geom_density(aes(y=..scaled..), alpha = 0.5))
+  print(ggplot(data_frame, aes_string(column_name, fill = 'type')) + geom_density(alpha = 0.5)  + guides(fill=FALSE))
 }
 ```
