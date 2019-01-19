@@ -1,5 +1,5 @@
 batch_size: 4096
-data_dir: ./data/ccfd/normalized_l2
+data_dir: ./data/normalized_l2
 decoder_activation: tanh
 encoder_activation: relu
 epochs: 47
